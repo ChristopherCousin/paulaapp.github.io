@@ -59,15 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Feature items animation
-  gsap.from('.feature-item', {
+  gsap.from(".feature-card", {
     opacity: 0,
     y: 50,
     duration: 0.8,
     stagger: 0.2,
-    ease: 'power3.out',
+    ease: "power3.out",
     scrollTrigger: {
-      trigger: '#features',
-      start: 'top 80%'
+      trigger: "#features",
+      start: "top 60%",
+      end: "bottom 30%",
+      toggleActions: "play none none reverse"
     }
   });
 
@@ -205,4 +207,72 @@ document.addEventListener('DOMContentLoaded', () => {
   // Run on load and resize
   handleResponsive();
   window.addEventListener('resize', handleResponsive);
+
+  // Nuevas animaciones
+  gsap.from(".feature-card", {
+    scrollTrigger: {
+      trigger: ".feature-grid",
+      start: "top center",
+      toggleActions: "play none none reverse"
+    },
+    opacity: 0,
+    y: 50,
+    stagger: 0.1,
+    duration: 0.8
+  });
+
+  // Efecto parallax mejorado
+  gsap.to(".hero-image", {
+    scrollTrigger: {
+      trigger: "#hero",
+      start: "top top",
+      end: "bottom top",
+      scrub: true
+    },
+    yPercent: 15,
+    scale: 1.05
+  });
+
+  // Interacción hover avanzada
+  document.querySelectorAll('.feature-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      gsap.to(card, {
+        x: (x - rect.width/2) * 0.1,
+        y: (y - rect.height/2) * 0.1,
+        rotateX: (y - rect.height/2) * -0.1,
+        rotateY: (x - rect.width/2) * 0.2,
+        ease: "power2.out"
+      });
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        x: 0,
+        y: 0,
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.8,
+        ease: "elastic.out(1, 0.3)"
+      });
+    });
+  });
+
+  // Añadir esta animación después de las demás
+  gsap.from('.faq-item', {
+    opacity: 0,
+    y: 30,
+    duration: 0.6,
+    stagger: 0.1,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: '#faq',
+      start: 'top 70%',
+      end: 'bottom 50%',
+      toggleActions: 'play none none reverse'
+    }
+  });
 });
