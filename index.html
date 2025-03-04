@@ -101,6 +101,15 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Indicador de Scroll Down -->
+            <div class="scroll-indicator-container" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
+                <div class="scroll-indicator">
+                    <span class="scroll-line"></span>
+                    <span class="scroll-arrow"></span>
+                </div>
+                <span class="scroll-text">Explora</span>
+            </div>
         </section>
 
         <section id="features" class="features">
@@ -558,7 +567,7 @@
             };
             
             // Función para actualizar el detalle
-            function updateFeatureDetail(featureId) {
+            function updateFeatureDetail(featureId, isUserClick) {
                 const feature = featuresData[featureId];
                 if (!feature) return;
                 
@@ -575,9 +584,9 @@
                 // Mostrar con animación
                 featureDetail.style.opacity = '1';
                 
-                // Desplazar a la vista si es necesario
+                // Desplazar a la vista solo si es un clic del usuario y estamos en móvil
                 const isMobile = window.innerWidth <= 768;
-                if (isMobile) {
+                if (isMobile && isUserClick) {
                     setTimeout(() => {
                         featureDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }, 100);
@@ -600,8 +609,8 @@
                         orbitFeatures.forEach(f => f.classList.remove('active'));
                         this.classList.add('active');
                         
-                        // Actualizar detalle
-                        updateFeatureDetail(featureId);
+                        // Actualizar detalle (indicando que es un clic de usuario)
+                        updateFeatureDetail(featureId, true);
                     });
                 });
             });
@@ -610,7 +619,11 @@
             if (orbitFeatures.length > 0) {
                 const firstFeature = orbitFeatures[0];
                 firstFeature.classList.add('active');
-                updateFeatureDetail(firstFeature.getAttribute('data-feature'));
+                
+                // Actualizar el detalle sin desplazamiento automático
+                featureDetailTitle.textContent = featuresData[firstFeature.getAttribute('data-feature')].title;
+                featureDetailDescription.textContent = featuresData[firstFeature.getAttribute('data-feature')].description;
+                featureDetail.style.opacity = '1';
             }
         });
     </script>

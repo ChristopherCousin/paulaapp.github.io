@@ -83,8 +83,8 @@
   }
   
   .orbit-feature {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
   }
   
   .orbit-feature-icon {
@@ -219,11 +219,76 @@
   }
   
   .case-study-floating {
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    margin: -40px auto 1.5rem;
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 180px;
+    max-width: 45%;
+    margin: 0;
+    padding: 0.9rem;
+    z-index: 10;
+    opacity: 0.9;
+    box-shadow: 0 0 25px rgba(127, 90, 240, 0.3);
+    background: rgba(36, 38, 41, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(127, 90, 240, 0.2);
+    animation: none;
+  }
+  
+  .case-study-floating::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--border-radius-md);
+    padding: 1px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+  
+  .case-study-floating::after {
+    display: none;
+  }
+  
+  @keyframes pulseAnimation {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.8);
+      opacity: 0.7;
+    }
+  }
+  
+  @keyframes floatAnimation {
+    0% {
+      transform: translateY(-50%) translateX(0);
+      box-shadow: 0 0 25px rgba(127, 90, 240, 0.3);
+    }
+    100% {
+      transform: translateY(-50%) translateX(-5px);
+      box-shadow: 0 0 30px rgba(127, 90, 240, 0.5);
+    }
+  }
+  
+  .case-badge {
+    background: linear-gradient(90deg, rgba(127, 90, 240, 0.8) 0%, rgba(44, 182, 125, 0.8) 100%);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .metric-value {
+    text-shadow: 0 0 10px rgba(127, 90, 240, 0.5);
   }
   
   .features-orbit-container {
@@ -241,8 +306,8 @@
   }
   
   .orbit-feature {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
   }
   
   .orbit-feature-icon {
@@ -354,6 +419,11 @@
   .orbit-feature-icon svg {
     width: 28px;
     height: 28px;
+  }
+  
+  .orbit-center {
+    width: 130px;
+    height: 130px;
   }
 }
 
@@ -478,9 +548,20 @@
   }
   
   .case-study-floating {
-    width: 85%;
-    max-width: 260px;
-    margin-top: -30px;
+    right: -25px;
+    width: 160px;
+    max-width: 45%;
+    padding: 0.8rem;
+  }
+  
+  .case-study-floating p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+    font-size: 0.8rem;
   }
   
   /* Mejoras para la sección de características en móviles */
@@ -522,8 +603,8 @@
   }
   
   .orbit-feature {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
   }
   
   .orbit-feature-icon {
@@ -570,24 +651,24 @@
   /* Ajustar posiciones de las características en la órbita */
   .orbit-feature-1 {
     top: 50%;
-    left: calc(50% - 110px);
+    left: calc(50% - 120px);
     transform: translate(-50%, -50%) !important;
   }
   
   .orbit-feature-2 {
-    top: calc(50% - 110px);
+    top: calc(50% - 120px);
     left: 50%;
     transform: translate(-50%, -50%) !important;
   }
   
   .orbit-feature-3 {
     top: 50%;
-    left: calc(50% + 110px);
+    left: calc(50% + 120px);
     transform: translate(-50%, -50%) !important;
   }
   
   .orbit-feature-4 {
-    top: calc(50% + 110px);
+    top: calc(50% + 120px);
     left: 50%;
     transform: translate(-50%, -50%) !important;
   }
@@ -597,6 +678,8 @@
     width: 5px;
     height: 5px;
   }
+  
+  /* Eliminar ajustes de los picos para pantallas pequeñas */
 }
 
 @media (max-width: 375px) {
@@ -672,10 +755,19 @@
   }
   
   .case-study-floating {
-    width: 90%;
-    max-width: 230px;
-    margin-top: -25px;
-    padding: 0.8rem;
+    right: -20px;
+    width: 140px;
+    max-width: 42%;
+    padding: 0.7rem;
+  }
+  
+  .case-study-floating h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .case-study-floating::after {
+    display: none;
   }
   
   .hero-description {
@@ -705,8 +797,8 @@
   }
   
   .orbit-feature {
-    width: 60px;
-    height: 60px;
+    width: 85px;
+    height: 85px;
   }
   
   .orbit-feature-1 {
@@ -744,6 +836,13 @@
   .feature-detail p {
     font-size: 0.7rem;
   }
+  
+  .orbit-center {
+    width: 110px;
+    height: 110px;
+  }
+  
+  /* Eliminar ajustes de los picos para pantallas muy pequeñas */
 }
 
 /* Para dispositivos extremadamente pequeños */
@@ -805,24 +904,23 @@
   }
   
   .case-study-floating {
-    width: 90%;
-    max-width: 200px;
-    margin-top: -20px;
-    padding: 0.7rem;
+    right: -15px;
+    width: 130px;
+    max-width: 40%;
+    padding: 0.6rem;
   }
   
   .case-study-floating h3 {
-    font-size: 0.85rem;
-    margin-bottom: 0.3rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
   }
   
   .case-study-floating p {
-    font-size: 0.7rem;
-    margin-bottom: 0.5rem;
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    display: none;
+  }
+  
+  .case-metrics {
+    gap: 0.4rem;
   }
   
   .metric-value {
@@ -878,8 +976,8 @@
   }
   
   .orbit-feature {
-    width: 55px;
-    height: 55px;
+    width: 70px;
+    height: 70px;
   }
   
   .orbit-feature-1 {

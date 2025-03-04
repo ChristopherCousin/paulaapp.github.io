@@ -1,5 +1,14 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+  // Evitar desplazamiento automático a secciones al cargar la página en dispositivos móviles
+  if (window.innerWidth <= 768 && window.location.hash) {
+    // Pequeño retraso para asegurar que la página se cargue completamente
+    setTimeout(() => {
+      // Desplazarse al inicio de la página
+      window.scrollTo(0, 0);
+    }, 10);
+  }
+  
   // Mobile menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
@@ -115,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Animación para las tarjetas de características
   function animateFeatureCards() {
-    // Inicializar el sistema de órbitas de características
+    // Inicializar el sistema de órbitas de características, pero sin desplazamiento automático
     initOrbitFeatures();
     
     // Animar la aparición del centro de la órbita
@@ -228,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     // Función simple para actualizar el detalle
-    function updateFeatureDetail(featureId) {
+    function updateFeatureDetail(featureId, isUserClick) {
       const feature = featuresData[featureId];
       if (!feature) return;
       
@@ -239,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Aplicar efecto visual
       featureDetail.style.display = 'block';
       featureDetail.style.opacity = '0';
+      featureDetail.style.transform = 'translateY(10px)';
       
       // Forzar un reflow para que la transición funcione
       void featureDetail.offsetWidth;
@@ -247,9 +257,10 @@ document.addEventListener('DOMContentLoaded', () => {
       featureDetail.style.opacity = '1';
       featureDetail.style.transform = 'translateY(0)';
       
-      // Desplazar a la vista si es necesario
+      // Desplazar a la vista si es necesario, pero solo si fue activado por un clic del usuario
+      // y no durante la carga inicial de la página
       const isMobile = window.innerWidth <= 768;
-      if (isMobile) {
+      if (isMobile && isUserClick) {
         setTimeout(() => {
           featureDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }, 100);
@@ -268,15 +279,29 @@ document.addEventListener('DOMContentLoaded', () => {
         this.classList.add('active');
         
         // Actualizar detalle
-        updateFeatureDetail(featureId);
+        updateFeatureDetail(featureId, true);
       });
     });
     
-    // Inicializar con la primera característica
+    // Inicializar con la primera característica si existe
     if (orbitFeatures.length > 0) {
       const firstFeature = orbitFeatures[0];
       firstFeature.classList.add('active');
-      updateFeatureDetail(firstFeature.getAttribute('data-feature'));
+      
+      // Actualizar el detalle sin desplazamiento automático
+      if (featureId && featuresData[featureId]) {
+        featureDetailTitle.textContent = featuresData[featureId].title;
+        featureDetailDescription.textContent = featuresData[featureId].description;
+        featureDetail.style.opacity = '1';
+        featureDetail.style.transform = 'translateY(0)';
+      } else {
+        // Si no hay un ID específico, usar la primera característica
+        const firstFeatureId = firstFeature.getAttribute('data-feature');
+        featureDetailTitle.textContent = featuresData[firstFeatureId].title;
+        featureDetailDescription.textContent = featuresData[firstFeatureId].description;
+        featureDetail.style.opacity = '1';
+        featureDetail.style.transform = 'translateY(0)';
+      }
     }
   }
   
