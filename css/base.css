@@ -18,6 +18,13 @@
   --transition-medium: 0.5s ease;
   --transition-slow: 0.8s ease;
   --font-primary: 'Poppins', sans-serif;
+  
+  /* Variables para espaciado responsive */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 5rem;
 }
 
 * {
@@ -28,6 +35,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-primary);
   background-color: var(--bg-primary);
@@ -36,6 +48,7 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
+  -webkit-tap-highlight-color: transparent; /* Eliminar el resaltado al tocar en móviles */
 }
 
 .container {
@@ -45,6 +58,44 @@ body {
   padding: 0 2rem;
   position: relative;
   z-index: 1;
+}
+
+/* Mejoras para imágenes responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Mejoras para videos responsive */
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mejoras para formularios en móvil */
+input, 
+textarea, 
+button, 
+select {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  border-radius: var(--border-radius-sm);
+  border: none;
+  outline: none;
+}
+
+input, 
+textarea, 
+select {
+  padding: 0.8rem 1rem;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
 }
 
 h2 {

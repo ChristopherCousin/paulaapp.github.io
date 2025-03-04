@@ -3,9 +3,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
+  const body = document.body;
 
+  // Mejorado el toggle del menú móvil
   menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+    body.classList.toggle('menu-open'); // Prevenir scroll cuando el menú está abierto
+  });
+
+  // Cerrar el menú al hacer clic fuera de él
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('active') && 
+        !navLinks.contains(e.target) && 
+        !menuToggle.contains(e.target)) {
+      navLinks.classList.remove('active');
+      menuToggle.classList.remove('active');
+      body.classList.remove('menu-open');
+    }
   });
 
   // Smooth scrolling for navigation links
@@ -13,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
       navLinks.classList.remove('active');
+      menuToggle.classList.remove('active');
+      body.classList.remove('menu-open');
       document.querySelector(this.getAttribute('href')).scrollIntoView({
         behavior: 'smooth'
       });
@@ -728,27 +745,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Responsive adjustments
   function handleResponsive() {
-    if (window.innerWidth <= 768) {
-      // Mobile-specific animations or adjustments
-      // gsap.set('.hero-image', { clearProps: 'all' }); // Clear parallax effect on mobile
+    const isMobile = window.innerWidth <= 768;
+    const isTablet = window.innerWidth <= 992 && window.innerWidth > 768;
+    
+    // Ajustar elementos basados en el tamaño de la pantalla
+    if (isMobile) {
+      // Ajustes específicos para móvil
+      
+      // Optimizar animaciones para móvil (reducir o desactivar algunas)
+      const particles = document.querySelectorAll('.particle');
+      particles.forEach(particle => {
+        particle.style.animationDuration = '20s'; // Ralentizar animaciones para mejor rendimiento
+      });
+      
+      // Ajustar tamaño de elementos interactivos para facilitar el toque
+      const interactiveElements = document.querySelectorAll('.cta-button, .faq-question, .store-button');
+      interactiveElements.forEach(el => {
+        el.style.minHeight = '44px'; // Altura mínima recomendada para elementos táctiles
+      });
+      
+      // Ajustar espaciado para móvil
+      document.querySelectorAll('section').forEach(section => {
+        section.style.padding = '3rem 0';
+      });
+      
+    } else if (isTablet) {
+      // Ajustes específicos para tablet
+      document.querySelectorAll('section').forEach(section => {
+        section.style.padding = '4rem 0';
+      });
+      
     } else {
-      // Reset or apply desktop animations
-      // gsap.to('.hero-image img', {
-      //   yPercent: 20,
-      //   ease: 'none',
-      //   scrollTrigger: {
-      //     trigger: '#hero',
-      //     start: 'top top',
-      //     end: 'bottom top',
-      //     scrub: true
-      //   }
-      // });
+      // Ajustes para desktop
+      document.querySelectorAll('section').forEach(section => {
+        section.style.padding = '5rem 0';
+      });
+      
+      // Restaurar animaciones completas
+      const particles = document.querySelectorAll('.particle');
+      particles.forEach(particle => {
+        particle.style.animationDuration = ''; // Volver a la duración original
+      });
+    }
+    
+    // Ajustar altura del canvas neural para que coincida con la altura de la ventana
+    const neuralCanvas = document.getElementById('neuralCanvas');
+    if (neuralCanvas) {
+      neuralCanvas.width = window.innerWidth;
+      neuralCanvas.height = window.innerHeight;
     }
   }
 
   // Run on load and resize
   handleResponsive();
   window.addEventListener('resize', handleResponsive);
+  
+  // Optimizar el rendimiento en dispositivos móviles
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    // Throttle resize event
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(handleResponsive, 250);
+  });
 
   // Nuevas animaciones
   // gsap.from(".feature-card", {

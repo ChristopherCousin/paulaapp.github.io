@@ -9,6 +9,7 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
 }
 
 .nav {
@@ -107,6 +108,7 @@
   cursor: pointer;
   padding: 0.5rem;
   z-index: 1001;
+  position: relative;
 }
 
 .menu-toggle span {
@@ -116,4 +118,42 @@
   margin: 5px 0;
   background-color: var(--text-light);
   transition: var(--transition-fast);
+}
+
+/* Estilos para el menú móvil activo */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Prevenir scroll cuando el menú está abierto */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Mejorar la accesibilidad táctil en móviles */
+@media (max-width: 768px) {
+  .nav-links a {
+    display: block;
+    padding: 1rem 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1rem;
+  }
 } 
