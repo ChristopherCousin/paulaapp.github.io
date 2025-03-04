@@ -36,25 +36,67 @@
     </div>
     
     <header class="header">
+        <div class="header-backdrop"></div>
         <nav class="container nav">
             <div class="logo-container">
                 <div class="logo-circle">
                     <span class="logo-letter">P</span>
+                    <div class="logo-glow"></div>
                 </div>
-                <a href="index.html" class="logo-text">PAULA</a>
+                <a href="index.html" class="logo-text">
+                    <span class="logo-text-letter">P</span>
+                    <span class="logo-text-letter">A</span>
+                    <span class="logo-text-letter">U</span>
+                    <span class="logo-text-letter">L</span>
+                    <span class="logo-text-letter">A</span>
+                </a>
+                <div class="logo-badge">IA</div>
             </div>
-            <button class="menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#features">Características</a></li>
-                <li><a href="#testimonials">Testimonios</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-            <a href="#download" class="cta-button">Descarga Gratis</a>
+            
+            <div class="nav-container">
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="#features" class="nav-link">
+                            <span class="nav-icon"><i class="fas fa-star"></i></span>
+                            <span class="nav-text">Características</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#testimonials" class="nav-link">
+                            <span class="nav-icon"><i class="fas fa-comment"></i></span>
+                            <span class="nav-text">Testimonios</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#faq" class="nav-link">
+                            <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
+                            <span class="nav-text">FAQ</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="header-actions">
+                    <a href="#download" class="cta-button">
+                        <span class="cta-icon"><i class="fas fa-download"></i></span>
+                        <span class="cta-text">Descarga Gratis</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="nav-overlay"></div>
         </nav>
+        
+        <div class="header-particles">
+            <div class="header-particle"></div>
+            <div class="header-particle"></div>
+            <div class="header-particle"></div>
+        </div>
     </header>
 
     <main>
@@ -122,9 +164,6 @@
                     <!-- Centro de la órbita - Paula -->
                     <div class="orbit-center">
                         <div class="orbit-center-content">
-                            <div class="orbit-center-icon">
-                                <div class="paula-avatar">P</div>
-                            </div>
                             <h3>Paula</h3>
                             <p>Tu asistente de IA emocional</p>
                         </div>
@@ -242,7 +281,7 @@
             <div class="container">
                 <h2 class="section-title">Testimonios de <span class="gradient-text">usuarios</span></h2>
                 <div class="testimonial-grid">
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-index="0">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">
                                 <i class="fas fa-user-circle"></i>
@@ -257,7 +296,7 @@
                         <span class="time-using">Usuario desde hace 6 meses</span>
                     </div>
                     
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-index="1">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">
                                 <i class="fas fa-user-circle"></i>
@@ -272,7 +311,7 @@
                         <span class="time-using">Usuario desde hace 3 meses</span>
                     </div>
                     
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-index="2">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">
                                 <i class="fas fa-user-circle"></i>
@@ -286,6 +325,23 @@
                         <p class="testimonial-text">"La capacidad de Paula para entender el contexto y ofrecer consejos personalizados es increíble. Me ha ayudado tanto en lo personal como en lo profesional."</p>
                         <span class="time-using">Usuario desde hace 1 año</span>
                     </div>
+                </div>
+                
+                <!-- Controles de navegación para móvil -->
+                <div class="testimonial-controls">
+                    <button class="testimonial-nav-button prev-testimonial">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="testimonial-nav-button next-testimonial">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Indicadores de posición para móvil -->
+                <div class="testimonial-indicators">
+                    <div class="testimonial-indicator active" data-index="0"></div>
+                    <div class="testimonial-indicator" data-index="1"></div>
+                    <div class="testimonial-indicator" data-index="2"></div>
                 </div>
                 
                 <div class="testimonial-stats">
@@ -306,92 +362,325 @@
         </section>
 
         <section id="faq" class="faq">
+            <div class="faq-backdrop"></div>
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Preguntas <span class="gradient-text">frecuentes</span></h2>
                     <p class="section-subtitle">Encuentra respuestas rápidas a las dudas más comunes</p>
                 </div>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h3 class="faq-question">¿Es Paula un reemplazo para la terapia tradicional?</h3>
-                        <div class="faq-answer">
-                            <p>Paula es un complemento valioso para el bienestar emocional, pero no reemplaza la terapia con un profesional de la salud mental. Siempre recomendamos buscar ayuda profesional para problemas graves o persistentes.</p>
+                
+                <div class="faq-neuron-decoration">
+                    <div class="neuron-cell"></div>
+                    <div class="neuron-connections">
+                        <div class="neuron-connection"></div>
+                        <div class="neuron-connection"></div>
+                        <div class="neuron-connection"></div>
+                    </div>
+                </div>
+                
+                <div class="faq-container">
+                    <div class="faq-tabs">
+                        <button class="faq-tab active" data-tab="general">
+                            <div class="tab-icon"><i class="fas fa-brain"></i></div>
+                            <span>General</span>
+                        </button>
+                        <button class="faq-tab" data-tab="privacy">
+                            <div class="tab-icon"><i class="fas fa-shield-alt"></i></div>
+                            <span>Privacidad</span>
+                        </button>
+                        <button class="faq-tab" data-tab="usage">
+                            <div class="tab-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                            <span>Uso</span>
+                        </button>
+                        <button class="faq-tab" data-tab="tech">
+                            <div class="tab-icon"><i class="fas fa-microchip"></i></div>
+                            <span>Tecnología</span>
+                        </button>
+                    </div>
+                    
+                    <div class="faq-content">
+                        <div class="faq-tab-content active" data-tab="general">
+                            <div class="faq-item">
+                                <div class="faq-question-container">
+                                    <div class="faq-pulse"></div>
+                                    <h3 class="faq-question">¿Es Paula un reemplazo para la terapia tradicional?</h3>
+                                    <div class="faq-toggle">
+                                        <div class="toggle-icon">
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <div class="answer-content">
+                                        <p>Paula es un <strong>complemento valioso</strong> para el bienestar emocional, pero no reemplaza la terapia con un profesional de la salud mental. Siempre recomendamos buscar ayuda profesional para problemas graves o persistentes.</p>
+                                    </div>
+                                    <div class="answer-background"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question-container">
+                                    <div class="faq-pulse"></div>
+                                    <h3 class="faq-question">¿Paula puede ayudar en situaciones de crisis?</h3>
+                                    <div class="faq-toggle">
+                                        <div class="toggle-icon">
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <div class="answer-content">
+                                        <p>Aunque Paula puede ofrecer apoyo inmediato, <strong>no está diseñada para emergencias</strong>. En situaciones de crisis, siempre recomendamos buscar ayuda profesional o contactar a servicios de emergencia locales.</p>
+                                    </div>
+                                    <div class="answer-background"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-tab-content" data-tab="privacy">
+                            <div class="faq-item">
+                                <div class="faq-question-container">
+                                    <div class="faq-pulse"></div>
+                                    <h3 class="faq-question">¿Cómo garantiza Paula la privacidad de mis conversaciones?</h3>
+                                    <div class="faq-toggle">
+                                        <div class="toggle-icon">
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <div class="answer-content">
+                                        <p>Todas las conversaciones con Paula están <strong>encriptadas de extremo a extremo</strong> y se almacenan de forma segura. No compartimos tu información personal con terceros y puedes eliminar tus datos en cualquier momento.</p>
+                                    </div>
+                                    <div class="answer-background"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question-container">
+                                    <div class="faq-pulse"></div>
+                                    <h3 class="faq-question">¿Qué datos recopila la aplicación?</h3>
+                                    <div class="faq-toggle">
+                                        <div class="toggle-icon">
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <div class="answer-content">
+                                        <p>Paula recopila únicamente los datos necesarios para proporcionar una experiencia personalizada, como tu historial de conversaciones y preferencias. Todos estos datos están protegidos y puedes solicitar su eliminación en cualquier momento.</p>
+                                    </div>
+                                    <div class="answer-background"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-tab-content" data-tab="usage">
+                            <div class="faq-item">
+                                <div class="faq-question-container">
+                                    <div class="faq-pulse"></div>
+                                    <h3 class="faq-question">¿Con qué frecuencia debo usar Paula?</h3>
+                                    <div class="faq-toggle">
+                                        <div class="toggle-icon">
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <div class="answer-content">
+                                        <p>Recomendamos usar Paula <strong>regularmente</strong> para obtener los mejores resultados. Muchos usuarios encuentran beneficioso chatear diariamente, pero la frecuencia puede variar según tus necesidades personales.</p>
+                                    </div>
+                                    <div class="answer-background"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question-container">
+                                    <div class="faq-pulse"></div>
+                                    <h3 class="faq-question">¿Cómo puedo sacar el máximo provecho de Paula?</h3>
+                                    <div class="faq-toggle">
+                                        <div class="toggle-icon">
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <div class="answer-content">
+                                        <p>Para maximizar los beneficios, sé abierto y honesto en tus conversaciones, establece rutinas de check-in emocional, practica las técnicas sugeridas y da feedback para que Paula pueda adaptarse mejor a tus necesidades.</p>
+                                    </div>
+                                    <div class="answer-background"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-tab-content" data-tab="tech">
+                            <div class="faq-item">
+                                <div class="faq-question-container">
+                                    <div class="faq-pulse"></div>
+                                    <h3 class="faq-question">¿Qué tecnologías utiliza Paula?</h3>
+                                    <div class="faq-toggle">
+                                        <div class="toggle-icon">
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <div class="answer-content">
+                                        <p>Paula utiliza <strong>modelos avanzados de IA</strong> basados en procesamiento de lenguaje natural, aprendizaje por refuerzo y técnicas de terapia cognitivo-conductual, todo validado por profesionales de la salud mental.</p>
+                                    </div>
+                                    <div class="answer-background"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question-container">
+                                    <div class="faq-pulse"></div>
+                                    <h3 class="faq-question">¿En qué dispositivos puedo usar Paula?</h3>
+                                    <div class="faq-toggle">
+                                        <div class="toggle-icon">
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <div class="answer-content">
+                                        <p>Paula está disponible para iOS y Android, y también se puede acceder a través de nuestra aplicación web desde cualquier navegador moderno, permitiéndote mantener tus conversaciones sincronizadas en todos tus dispositivos.</p>
+                                    </div>
+                                    <div class="answer-background"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">¿Cómo garantiza Paula la privacidad de mis conversaciones?</h3>
-                        <div class="faq-answer">
-                            <p>Todas las conversaciones con Paula están encriptadas de extremo a extremo y se almacenan de forma segura. No compartimos tu información personal con terceros y puedes eliminar tus datos en cualquier momento.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">¿Con qué frecuencia debo usar Paula?</h3>
-                        <div class="faq-answer">
-                            <p>Recomendamos usar Paula regularmente para obtener los mejores resultados. Muchos usuarios encuentran beneficioso chatear diariamente, pero la frecuencia puede variar según tus necesidades personales.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">¿Paula puede ayudar en situaciones de crisis?</h3>
-                        <div class="faq-answer">
-                            <p>Aunque Paula puede ofrecer apoyo inmediato, no está diseñada para emergencias. En situaciones de crisis, siempre recomendamos buscar ayuda profesional o contactar a servicios de emergencia locales.</p>
-                        </div>
-                    </div>
+                </div>
+                
+                <div class="faq-particles">
+                    <div class="faq-particle"></div>
+                    <div class="faq-particle"></div>
+                    <div class="faq-particle"></div>
+                    <div class="faq-particle"></div>
+                    <div class="faq-particle"></div>
                 </div>
             </div>
         </section>
 
         <section id="download" class="download">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header" data-aos="fade-up">
                     <h2 class="section-title">Descarga <span class="gradient-text">Paula</span> ahora</h2>
-                    <p class="section-subtitle">Comienza tu viaje hacia el bienestar emocional hoy mismo</p>
+                    <p class="section-subtitle">Tu camino hacia el bienestar emocional comienza con un solo clic</p>
                 </div>
                 
-                <div class="download-mockup">
-                    <div class="download-phone">
-                        <img src="assets/app-screen.jpg" alt="Paula App" class="download-phone-screen">
+                <div class="download-content">
+                    <!-- Mockup de la app con efecto 3D -->
+                    <div class="download-mockup-wrapper" data-aos="fade-right">
+                        <div class="download-phone">
+                            <div class="phone-frame">
+                                <div class="phone-notch"></div>
+                                <div class="phone-buttons">
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <video class="download-phone-screen" autoplay loop muted playsinline>
+                                    <source src="assets/app-screen.mp4" type="video/mp4">
+                                    Tu navegador no soporta videos HTML5.
+                                </video>
+                                <div class="phone-reflection"></div>
+                            </div>
+                            
+                            <!-- Elementos decorativos - neuronas/sinapsis -->
+                            <div class="phone-neurons">
+                                <div class="neuron-node n1"></div>
+                                <div class="neuron-node n2"></div>
+                                <div class="neuron-node n3"></div>
+                                <div class="neuron-connection c1"></div>
+                                <div class="neuron-connection c2"></div>
+                                <div class="neuron-connection c3"></div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="download-features">
-                        <div class="download-feature-item">
-                            <div class="download-feature-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    <!-- Características y CTAs -->
+                    <div class="download-info" data-aos="fade-left">
+                        <div class="download-badges">
+                            <div class="tech-badge">
+                                <i class="fas fa-lock"></i>
+                                <span>Encriptado E2E</span>
                             </div>
-                            <div class="download-feature-text">
-                                <h4>Apoyo emocional 24/7</h4>
-                                <p>Accede a Paula en cualquier momento del día o la noche, siempre estará disponible para escucharte y apoyarte.</p>
+                            <div class="tech-badge">
+                                <i class="fas fa-brain"></i>
+                                <span>IA Avanzada</span>
                             </div>
-                        </div>
-                        
-                        <div class="download-feature-item">
-                            <div class="download-feature-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                            </div>
-                            <div class="download-feature-text">
-                                <h4>Privacidad garantizada</h4>
-                                <p>Tus conversaciones están protegidas con encriptación de extremo a extremo y nunca se comparten con terceros.</p>
+                            <div class="tech-badge">
+                                <i class="fas fa-database"></i>
+                                <span>100% Seguro</span>
                             </div>
                         </div>
                         
-                        <div class="download-feature-item">
-                            <div class="download-feature-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                        <div class="download-features">
+                            <div class="download-feature-item active">
+                                <div class="download-feature-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                </div>
+                                <div class="download-feature-text">
+                                    <h4>Apoyo emocional 24/7</h4>
+                                    <p>Siempre disponible cuando más lo necesites, sin importar la hora o el día.</p>
+                                </div>
                             </div>
-                            <div class="download-feature-text">
-                                <h4>Recordatorios personalizados</h4>
-                                <p>Recibe recordatorios adaptados a tus necesidades para mantener tus prácticas de bienestar emocional.</p>
+                            
+                            <div class="download-feature-item">
+                                <div class="download-feature-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                </div>
+                                <div class="download-feature-text">
+                                    <h4>Privacidad garantizada</h4>
+                                    <p>Tus datos encriptados y protegidos siguiendo los más altos estándares.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="download-feature-item">
+                                <div class="download-feature-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                                </div>
+                                <div class="download-feature-text">
+                                    <h4>Personalización avanzada</h4>
+                                    <p>Algoritmos que aprenden de ti para ofrecerte una experiencia única.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="download-cta">
+                            <p class="cta-text">Disponible para iOS y Android</p>
+                            
+                            <div class="app-stores">
+                                <a href="#" class="store-button">
+                                    <img src="assets/app-store.svg" alt="Descargar en App Store" class="store-badge">   
+                                </a>
+                                
+                                <a href="#" class="store-button">
+                                    <img src="assets/google-play.svg" alt="Disponible en Google Play" class="store-badge">
+                                </a>
+                            </div>
+                            
+                            <div class="download-rating">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-count">4.9 (10k+ valoraciones)</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="app-stores">
-                    <a href="#" class="store-button">
-                        <img src="assets/app-store.svg" alt="Descargar en App Store">
-                    </a>
-                    <a href="#" class="store-button">
-                        <img src="assets/google-play.svg" alt="Disponible en Google Play">
-                    </a>
                 </div>
             </div>
         </section>

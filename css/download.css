@@ -1,143 +1,556 @@
+/* Sección de Descarga - Optimizada para móviles y escritorio */
+
 #download {
-  padding: 8rem 0;
+  padding: 5rem 0;
   position: relative;
-  background: linear-gradient(0deg, var(--bg-primary) 0%, rgba(22, 22, 26, 0.9) 100%);
   overflow: hidden;
+  z-index: 1;
 }
 
-#download::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 70% 30%, rgba(44, 182, 125, 0.1), transparent 70%);
-}
-
-#download .container {
-  position: relative;
-  z-index: 2;
-  max-width: 1000px;
-}
-
-#download .section-header {
-  max-width: 800px;
-  margin: 0 auto 4rem;
-}
-
-#download .section-title {
-  font-size: 3rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-#download .section-subtitle {
-  font-size: 1.2rem;
-  color: var(--text-secondary);
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.download {
-  position: relative;
-  padding: 6rem 0;
-}
-
-.download h2,
-.download .section-subtitle {
-  text-align: center;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.download-mockup {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* Estructura del contenido */
+.download-content {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 3rem;
-  margin: 4rem 0;
+  position: relative;
+  z-index: 10;
+}
+
+/* Para pantallas medianas y grandes */
+@media (min-width: 992px) {
+  .download-content {
+    grid-template-columns: 0.7fr 1.3fr;
+    align-items: center;
+  }
+}
+
+/* Para pantallas extra grandes */
+@media (min-width: 1200px) {
+  .download-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===== Mockup del teléfono con la app ===== */
+.download-mockup-wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
 .download-phone {
-  flex: 1;
-  max-width: 300px;
   position: relative;
+  width: 280px;
+  max-width: 100%;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  z-index: 5;
+}
+
+.phone-frame {
+  position: relative;
+  border-radius: 36px;
+  overflow: hidden;
+  background: var(--bg-dark);
+  border: 10px solid var(--bg-dark);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.4),
+    0 10px 25px rgba(0, 0, 0, 0.3);
+  transform: rotateY(15deg) rotateX(5deg);
+  transition: transform 0.6s ease-out;
+  aspect-ratio: 9/19.5;
+  display: flex;
+  align-items: stretch;
+}
+
+.phone-frame:hover {
+  transform: rotateY(5deg) rotateX(2deg) scale(1.03);
+}
+
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 25px;
+  background: var(--bg-dark);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 10;
+}
+
+.phone-buttons {
+  position: absolute;
+  right: -15px;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+}
+
+.phone-buttons span {
+  width: 5px;
+  height: 50px;
+  background: var(--bg-dark);
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .download-phone-screen {
   width: 100%;
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-strong);
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  display: block;
+  background: transparent;
+  flex: 1;
 }
 
-.download-features {
-  flex: 1;
+/* Asegurar que el video se ajuste correctamente en modo vertical */
+video.download-phone-screen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  background: transparent;
+}
+
+.phone-reflection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 80%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+  border-radius: 26px;
+}
+
+/* Elementos decorativos neurales alrededor del teléfono */
+.phone-neurons {
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  right: -50px;
+  bottom: -50px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.neuron-node {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, var(--accent-primary), transparent 70%);
+  animation: pulse 3s infinite alternate ease-in-out;
+  opacity: 0.6;
+}
+
+.neuron-node.n1 {
+  width: 30px;
+  height: 30px;
+  top: 20%;
+  left: 0;
+  animation-delay: 0.3s;
+}
+
+.neuron-node.n2 {
+  width: 20px;
+  height: 20px;
+  top: 70%;
+  right: 10%;
+  animation-delay: 1.2s;
+}
+
+.neuron-node.n3 {
+  width: 25px;
+  height: 25px;
+  bottom: 15%;
+  left: 15%;
+  animation-delay: 2.1s;
+}
+
+.neuron-connection {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent-primary), transparent);
+  animation: flash 4s infinite alternate ease-in-out;
+  transform-origin: left center;
+  opacity: 0.4;
+}
+
+.neuron-connection.c1 {
+  width: 100px;
+  top: 25%;
+  left: 10%;
+  transform: rotate(20deg);
+  animation-delay: 0.5s;
+}
+
+.neuron-connection.c2 {
+  width: 120px;
+  top: 65%;
+  right: 10%;
+  transform: rotate(-30deg);
+  animation-delay: 1.5s;
+}
+
+.neuron-connection.c3 {
+  width: 80px;
+  bottom: 20%;
+  left: 15%;
+  transform: rotate(-10deg);
+  animation-delay: 2.3s;
+}
+
+/* ===== Información y características ===== */
+.download-info {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
+/* Badges tecnológicos */
+.download-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(127, 90, 240, 0.1);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.tech-badge i {
+  color: var(--accent-primary);
+}
+
+/* Características de la app */
+.download-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .download-feature-item {
   display: flex;
   align-items: flex-start;
-  gap: 1.5rem;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.download-feature-item:hover, 
+.download-feature-item.active {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(127, 90, 240, 0.3);
+  transform: translateY(-5px);
+}
+
+.download-feature-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+  transition: height 0.3s ease;
+}
+
+.download-feature-item:hover::before,
+.download-feature-item.active::before {
+  height: 100%;
 }
 
 .download-feature-icon {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  background: rgba(127, 90, 240, 0.1);
+  border-radius: 12px;
+  background: rgba(127, 90, 240, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent-primary);
   flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.download-feature-item:hover .download-feature-icon,
+.download-feature-item.active .download-feature-icon {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  transform: scale(1.1);
 }
 
 .download-feature-text h4 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .download-feature-text p {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.5;
+}
+
+/* CTA y botones de descarga */
+.download-cta {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cta-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
 .app-stores {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  margin-top: 3rem;
+  gap: 2.5rem;
+  margin: 2.5rem 0;
+  width: 100%;
 }
 
 .store-button {
-  display: inline-block;
-  transition: var(--transition-fast);
-}
-
-.store-button img {
-  height: 50px;
-  width: auto;
-  transition: var(--transition-fast);
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 .store-button:hover {
   transform: translateY(-5px);
+  filter: drop-shadow(0 15px 20px rgba(127, 90, 240, 0.3));
 }
 
-.store-button:hover img {
-  filter: drop-shadow(0 5px 15px rgba(127, 90, 240, 0.5));
+.store-badge {
+  width: 280px;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+.store-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.store-small {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.store-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.download-rating {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.rating-stars {
+  color: #FFD700;
+  font-size: 1rem;
+}
+
+.rating-count {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Partículas decorativas */
+.download-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.download-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, var(--accent-primary) 0%, transparent 70%);
+  opacity: 0.2;
+  animation: float 8s infinite ease-in-out;
+}
+
+.download-particle.p1 {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.download-particle.p2 {
+  width: 150px;
+  height: 150px;
+  top: 10%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.download-particle.p3 {
+  width: 70px;
+  height: 70px;
+  bottom: 5%;
+  right: 15%;
+  animation-delay: 4s;
+}
+
+.download-particle.p4 {
+  width: 120px;
+  height: 120px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 3s;
+}
+
+.download-particle.p5 {
+  width: 60px;
+  height: 60px;
+  top: 40%;
+  right: 30%;
+  animation-delay: 1s;
+}
+
+.download-particle.p6 {
+  width: 80px;
+  height: 80px;
+  bottom: 30%;
+  left: 30%;
+  animation-delay: 5s;
+}
+
+/* Animaciones */
+@keyframes pulse {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  100% { opacity: 0.7; transform: scale(1.2); }
+}
+
+@keyframes flash {
+  0% { opacity: 0.2; }
+  30% { opacity: 0.5; }
+  100% { opacity: 0.2; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(10px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+/* Media queries adicionales para mejor responsividad */
+@media (max-width: 768px) {
+  #download {
+    padding: 4rem 0;
+  }
+  
+  .download-mockup-wrapper {
+    margin-bottom: 2rem;
+  }
+  
+  .download-phone {
+    max-width: 220px;
+  }
+  
+  .phone-frame {
+    border-width: 8px;
+    border-radius: 28px;
+  }
+  
+  .download-phone-screen {
+    border-radius: 20px;
+  }
+  
+  .download-feature-item {
+    padding: 1rem;
+  }
+  
+  .download-feature-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .download-feature-text h4 {
+    font-size: 1rem;
+  }
+  
+  .download-feature-text p {
+    font-size: 0.85rem;
+  }
+  
+  .app-stores {
+    gap: 2rem;
+  }
+  
+  .store-badge {
+    width: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .download-badges {
+    justify-content: center;
+  }
+  
+  .app-stores {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .store-button {
+    display: block;
+  }
+  
+  .store-badge {
+    width: 240px;
+  }
+  
+  .download-rating {
+    justify-content: center;
+  }
 } 

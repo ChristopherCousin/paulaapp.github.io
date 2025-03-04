@@ -15,22 +15,67 @@
 </head>
 <body>
     <header class="header">
+        <div class="header-backdrop"></div>
         <nav class="container nav">
             <div class="logo-container">
-                <a href="index.html" class="logo-text">PAULA</a>
+                <div class="logo-circle">
+                    <span class="logo-letter">P</span>
+                    <div class="logo-glow"></div>
+                </div>
+                <a href="index.html" class="logo-text">
+                    <span class="logo-text-letter">P</span>
+                    <span class="logo-text-letter">A</span>
+                    <span class="logo-text-letter">U</span>
+                    <span class="logo-text-letter">L</span>
+                    <span class="logo-text-letter">A</span>
+                </a>
+                <div class="logo-badge">IA</div>
             </div>
-            <button class="menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html#features">Características</a></li>
-                <li><a href="index.html#testimonials">Testimonios</a></li>
-                <li><a href="index.html#faq">FAQ</a></li>
-            </ul>
-            <a href="index.html#download" class="cta-button">Descarga Gratis</a>
+            
+            <div class="nav-container">
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="index.html#features" class="nav-link">
+                            <span class="nav-icon"><i class="fas fa-star"></i></span>
+                            <span class="nav-text">Características</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#testimonials" class="nav-link">
+                            <span class="nav-icon"><i class="fas fa-comment"></i></span>
+                            <span class="nav-text">Testimonios</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#faq" class="nav-link">
+                            <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
+                            <span class="nav-text">FAQ</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="header-actions">
+                    <a href="index.html#download" class="cta-button">
+                        <span class="cta-icon"><i class="fas fa-download"></i></span>
+                        <span class="cta-text">Descarga Gratis</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="nav-overlay"></div>
         </nav>
+        
+        <div class="header-particles">
+            <div class="header-particle"></div>
+            <div class="header-particle"></div>
+            <div class="header-particle"></div>
+        </div>
     </header>
 
     <main class="container legal-content">

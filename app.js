@@ -9,74 +9,191 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 10);
   }
   
-  // Mobile menu toggle
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  const navItems = document.querySelectorAll('.nav-links li');
-  const body = document.body;
+  // Header mejorado con efectos interactivos
+  initEnhancedHeader();
+  
+  // Inicializar el carrusel de testimonios para móvil
+  initTestimonialsCarousel();
+  
+  // Inicializar la sección FAQ interactiva
+  initFaqSection();
+  
+  // Variables para el header
   const header = document.querySelector('.header');
+  const body = document.body;
   
-  // Añadir índices a los elementos del menú para animaciones escalonadas
-  navItems.forEach((item, index) => {
-    item.style.setProperty('--item-index', index);
-  });
+  // Función para inicializar el header mejorado
+  function initEnhancedHeader() {
+    const header = document.querySelector('.header');
+    const logoLetters = document.querySelectorAll('.logo-text-letter');
+    const headerParticles = document.querySelectorAll('.header-particle');
+    
+    // Efecto de scroll para el header
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Animación inicial de las letras del logo
+    logoLetters.forEach((letter, index) => {
+      letter.style.opacity = 0;
+      letter.style.transform = 'translateY(10px)';
+      
+      setTimeout(() => {
+        letter.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        letter.style.opacity = 1;
+        letter.style.transform = 'translateY(0)';
+      }, 100 + (index * 100));
+    });
+    
+    // Posicionar aleatoriamente las partículas del header
+    headerParticles.forEach(particle => {
+      const randomX = Math.random() * 100;
+      const randomY = Math.random() * 100;
+      const randomSize = 3 + Math.random() * 5;
+      const randomDuration = 8 + Math.random() * 7;
+      const randomDelay = Math.random() * 5;
+      
+      particle.style.left = `${randomX}%`;
+      particle.style.top = `${randomY}%`;
+      particle.style.width = `${randomSize}px`;
+      particle.style.height = `${randomSize}px`;
+      particle.style.animationDuration = `${randomDuration}s`;
+      particle.style.animationDelay = `${randomDelay}s`;
+    });
+  }
   
-  // Crear el overlay para el menú móvil
-  const navOverlay = document.createElement('div');
-  navOverlay.classList.add('nav-overlay');
-  document.body.appendChild(navOverlay);
-
-  // Mejorado el toggle del menú móvil
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-    body.classList.toggle('menu-open'); // Prevenir scroll cuando el menú está abierto
-    navOverlay.classList.toggle('active'); // Mostrar/ocultar overlay
-  });
-
-  // Cerrar el menú al hacer clic en el overlay
-  navOverlay.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-    menuToggle.classList.remove('active');
-    body.classList.remove('menu-open');
-    navOverlay.classList.remove('active');
-  });
-
-  // Cerrar el menú al hacer clic fuera de él
-  document.addEventListener('click', (e) => {
-    if (navLinks.classList.contains('active') && 
-        !navLinks.contains(e.target) && 
-        !menuToggle.contains(e.target)) {
-      navLinks.classList.remove('active');
-      menuToggle.classList.remove('active');
-      body.classList.remove('menu-open');
-      navOverlay.classList.remove('active');
+  // Función para inicializar la sección FAQ interactiva
+  function initFaqSection() {
+    const faqTabs = document.querySelectorAll('.faq-tab');
+    const faqContents = document.querySelectorAll('.faq-tab-content');
+    const faqItems = document.querySelectorAll('.faq-item');
+    const faqQuestionContainers = document.querySelectorAll('.faq-question-container');
+    
+    // Función para cambiar de pestaña
+    function switchTab(tabId) {
+      // Desactivar todas las pestañas y contenidos
+      faqTabs.forEach(tab => tab.classList.remove('active'));
+      faqContents.forEach(content => content.classList.remove('active'));
+      
+      // Activar la pestaña y contenido seleccionados
+      const activeTab = document.querySelector(`.faq-tab[data-tab="${tabId}"]`);
+      const activeContent = document.querySelector(`.faq-tab-content[data-tab="${tabId}"]`);
+      
+      if (activeTab && activeContent) {
+        activeTab.classList.add('active');
+        activeContent.classList.add('active');
+        
+        // Cerrar todas las preguntas abiertas
+        faqItems.forEach(item => item.classList.remove('active'));
+      }
     }
-  });
-
-  // Cambiar el estilo del header al hacer scroll
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-
-  // Smooth scrolling for navigation links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      navLinks.classList.remove('active');
-      menuToggle.classList.remove('active');
-      body.classList.remove('menu-open');
-      navOverlay.classList.remove('active');
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth'
+    
+    // Manejar clics en las pestañas
+    faqTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.getAttribute('data-tab');
+        switchTab(tabId);
       });
     });
+    
+    // Manejar clics en las preguntas
+    faqQuestionContainers.forEach(questionContainer => {
+      questionContainer.addEventListener('click', () => {
+        const faqItem = questionContainer.closest('.faq-item');
+        
+        // Si el elemento ya está activo, cerrarlo
+        if (faqItem.classList.contains('active')) {
+          faqItem.classList.remove('active');
+        } else {
+          // Cerrar cualquier otro elemento abierto en el mismo grupo
+          const parentTabContent = faqItem.closest('.faq-tab-content');
+          const siblingItems = parentTabContent.querySelectorAll('.faq-item');
+          siblingItems.forEach(item => item.classList.remove('active'));
+          
+          // Abrir el elemento actual
+          faqItem.classList.add('active');
+        }
+      });
+    });
+    
+    // Animaciones para la decoración neuronal
+    const neuronConnections = document.querySelectorAll('.neuron-connection');
+    neuronConnections.forEach((connection, index) => {
+      const randomDuration = 3 + Math.random() * 2;
+      const randomDelay = Math.random() * 2;
+      connection.style.animationDuration = `${randomDuration}s`;
+      connection.style.animationDelay = `${randomDelay}s`;
+    });
+    
+    // Partículas del FAQ
+    const faqParticles = document.querySelectorAll('.faq-particle');
+    faqParticles.forEach(particle => {
+      const randomX = Math.random() * 100;
+      const randomY = Math.random() * 100;
+      const randomSize = 4 + Math.random() * 6;
+      const randomDuration = 15 + Math.random() * 15;
+      const randomDelay = Math.random() * 5;
+      
+      particle.style.left = `${randomX}%`;
+      particle.style.top = `${randomY}%`;
+      particle.style.width = `${randomSize}px`;
+      particle.style.height = `${randomSize}px`;
+      particle.style.animationDuration = `${randomDuration}s`;
+      particle.style.animationDelay = `${randomDelay}s`;
+    });
+    
+    // Configuración específica para móvil
+    function setupMobileView() {
+      if (window.innerWidth <= 576) {
+        const faqContents = document.querySelectorAll('.faq-tab-content');
+        
+        faqContents.forEach(content => {
+          // Configurar eventos de deslizamiento para cada conjunto de preguntas
+          content.addEventListener('scroll', () => {
+            const scrollPosition = content.scrollLeft / (content.scrollWidth - content.clientWidth);
+            const progressBar = content.parentNode.querySelector('.faq-progress-bar');
+            if (progressBar) {
+              progressBar.style.transform = `scaleX(${scrollPosition})`;
+            }
+          });
+        });
+      }
+    }
+    
+    // Ejecutar configuración inicial
+    setupMobileView();
+    
+    // Reconfigurrar en caso de cambio de tamaño de ventana
+    window.addEventListener('resize', setupMobileView);
+    
+    // Activar la primera pestaña por defecto
+    switchTab('general');
+  }
+  
+  // Smooth scrolling para enlaces de navegación
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        const headerHeight = document.querySelector('.header').offsetHeight;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
   });
-
+  
   // Testimonial slider
   const testimonials = document.querySelectorAll('.testimonial');
   let currentTestimonial = 0;
@@ -463,48 +580,145 @@ document.addEventListener('DOMContentLoaded', () => {
     const appStores = document.querySelector('#download .app-stores');
     
     if (downloadPhone) {
+      // Animación de entrada del teléfono
       gsap.from(downloadPhone, {
         scrollTrigger: {
           trigger: "#download",
-          start: "top 70%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
+          start: "top 80%",
         },
-        y: 50,
+        y: 80,
         opacity: 0,
-        duration: 1,
+        duration: 1.2,
         ease: "power3.out"
+      });
+      
+      // Animación de rotación suave del teléfono
+      gsap.to(downloadPhone.querySelector('.phone-frame'), {
+        rotateY: 5,
+        rotateX: 2,
+        duration: 2,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true
+      });
+      
+      // Animación de partículas neuronales
+      const neuronNodes = document.querySelectorAll('.neuron-node');
+      neuronNodes.forEach(node => {
+        gsap.to(node, {
+          scale: 1.2,
+          opacity: 0.8,
+          duration: 2 + Math.random() * 2,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true
+        });
       });
     }
     
     if (downloadFeatures.length > 0) {
+      // Animación de entrada de las características
       gsap.from(downloadFeatures, {
         scrollTrigger: {
           trigger: ".download-features",
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
+          start: "top 90%",
         },
-        x: 30,
+        y: 40,
         opacity: 0,
-        duration: 0.8,
         stagger: 0.2,
-        ease: "power3.out"
+        duration: 0.8,
+        ease: "power2.out"
       });
+      
+      // Interactividad de las características
+      downloadFeatures.forEach(feature => {
+        feature.addEventListener('mouseenter', () => {
+          // Remover clase active de todos los items
+          downloadFeatures.forEach(f => f.classList.remove('active'));
+          // Añadir clase active al item actual
+          feature.classList.add('active');
+        });
+      });
+      
+      // Configurar la primera característica como activa por defecto
+      if (downloadFeatures[0]) {
+        downloadFeatures[0].classList.add('active');
+      }
     }
     
     if (appStores) {
-      gsap.from(appStores, {
+      // Animación de entrada de los botones de descarga
+      gsap.from(appStores.children, {
         scrollTrigger: {
           trigger: "#download .app-stores",
           start: "top 90%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
         },
-        y: 30,
+        y: 20,
         opacity: 0,
-        duration: 0.8,
-        ease: "power3.out"
+        stagger: 0.15,
+        duration: 0.7,
+        ease: "back.out(1.5)"
+      });
+    }
+    
+    // Animación de partículas flotantes
+    const downloadParticles = document.querySelectorAll('.download-particle');
+    if (downloadParticles.length > 0) {
+      downloadParticles.forEach(particle => {
+        gsap.to(particle, {
+          y: -30 - Math.random() * 30,
+          x: 15 - Math.random() * 30,
+          duration: 4 + Math.random() * 4,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true
+        });
+      });
+    }
+    
+    // Badges técnicos con efecto de hover
+    const techBadges = document.querySelectorAll('.tech-badge');
+    if (techBadges.length > 0) {
+      techBadges.forEach(badge => {
+        badge.addEventListener('mouseenter', () => {
+          gsap.to(badge, {
+            scale: 1.05,
+            duration: 0.3,
+            ease: "power1.out"
+          });
+        });
+        
+        badge.addEventListener('mouseleave', () => {
+          gsap.to(badge, {
+            scale: 1,
+            duration: 0.3,
+            ease: "power1.out"
+          });
+        });
+      });
+    }
+    
+    // Efecto de brillo al pasar el cursor por los botones de descarga
+    const storeButtons = document.querySelectorAll('.store-button');
+    if (storeButtons.length > 0) {
+      storeButtons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+          gsap.to(button, {
+            y: -5,
+            boxShadow: '0 15px 30px rgba(0, 0, 0, 0.3)',
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+        
+        button.addEventListener('mouseleave', () => {
+          gsap.to(button, {
+            y: 0,
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
       });
     }
   }
@@ -1595,4 +1809,143 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
   });
+
+  // Función para inicializar el carrusel de testimonios para móvil
+  function initTestimonialsCarousel() {
+    const testimonialGrid = document.querySelector('.testimonial-grid');
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    const prevButton = document.querySelector('.prev-testimonial');
+    const nextButton = document.querySelector('.next-testimonial');
+    const indicators = document.querySelectorAll('.testimonial-indicator');
+    
+    if (!testimonialGrid || testimonialCards.length === 0) return;
+    
+    let currentIndex = 0;
+    let startX, moveX, initialPosition;
+    let isScrolling = false;
+    
+    // Función para actualizar los indicadores
+    function updateIndicators(index) {
+      indicators.forEach(indicator => {
+        indicator.classList.remove('active');
+      });
+      
+      const activeIndicator = document.querySelector(`.testimonial-indicator[data-index="${index}"]`);
+      if (activeIndicator) {
+        activeIndicator.classList.add('active');
+      }
+    }
+    
+    // Función para desplazarse a un testimonio específico
+    function scrollToTestimonial(index) {
+      if (index < 0) index = 0;
+      if (index >= testimonialCards.length) index = testimonialCards.length - 1;
+      
+      currentIndex = index;
+      updateIndicators(currentIndex);
+      
+      // Solo aplicar scroll en móvil
+      if (window.innerWidth <= 768) {
+        const card = testimonialCards[index];
+        if (card) {
+          const scrollLeft = card.offsetLeft - testimonialGrid.offsetLeft - 16; // 16px es el padding
+          testimonialGrid.scrollTo({
+            left: scrollLeft,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }
+    
+    // Event listeners para los botones de navegación
+    if (prevButton) {
+      prevButton.addEventListener('click', () => {
+        scrollToTestimonial(currentIndex - 1);
+      });
+    }
+    
+    if (nextButton) {
+      nextButton.addEventListener('click', () => {
+        scrollToTestimonial(currentIndex + 1);
+      });
+    }
+    
+    // Event listeners para los indicadores
+    indicators.forEach(indicator => {
+      indicator.addEventListener('click', () => {
+        const index = parseInt(indicator.getAttribute('data-index'));
+        scrollToTestimonial(index);
+      });
+    });
+    
+    // Soporte para deslizamiento táctil
+    testimonialGrid.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      initialPosition = testimonialGrid.scrollLeft;
+      isScrolling = false;
+    }, { passive: true });
+    
+    testimonialGrid.addEventListener('touchmove', (e) => {
+      if (isScrolling) return;
+      
+      moveX = e.touches[0].clientX;
+      const diff = startX - moveX;
+      
+      // Si el desplazamiento es significativo, marcar como scrolling
+      if (Math.abs(diff) > 5) {
+        isScrolling = true;
+      }
+    }, { passive: true });
+    
+    testimonialGrid.addEventListener('touchend', (e) => {
+      if (!isScrolling) return;
+      
+      const diff = startX - moveX;
+      
+      // Determinar la dirección del deslizamiento
+      if (diff > 50) { // Deslizamiento a la izquierda
+        scrollToTestimonial(currentIndex + 1);
+      } else if (diff < -50) { // Deslizamiento a la derecha
+        scrollToTestimonial(currentIndex - 1);
+      }
+      
+      isScrolling = false;
+    }, { passive: true });
+    
+    // Detectar cuando el scroll termina para actualizar el índice actual
+    testimonialGrid.addEventListener('scroll', () => {
+      if (window.innerWidth <= 768) {
+        clearTimeout(testimonialGrid.scrollTimeout);
+        
+        testimonialGrid.scrollTimeout = setTimeout(() => {
+          // Encontrar el testimonio más cercano al centro
+          const centerPosition = testimonialGrid.scrollLeft + testimonialGrid.offsetWidth / 2;
+          
+          let closestCard = null;
+          let closestDistance = Infinity;
+          
+          testimonialCards.forEach((card, index) => {
+            const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+            const distance = Math.abs(cardCenter - centerPosition);
+            
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              closestCard = card;
+              currentIndex = index;
+            }
+          });
+          
+          updateIndicators(currentIndex);
+        }, 150);
+      }
+    }, { passive: true });
+    
+    // Inicializar con el primer testimonio
+    scrollToTestimonial(0);
+    
+    // Ajustar cuando cambia el tamaño de la ventana
+    window.addEventListener('resize', () => {
+      scrollToTestimonial(currentIndex);
+    });
+  }
 });
