@@ -305,113 +305,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  // Animación para los pasos del proceso
-  function animateProcessSteps() {
-    const stepContainers = document.querySelectorAll('.step-container');
-    const progressDots = document.querySelectorAll('.progress-dot');
-    const progressLine = document.querySelector('.progress-line');
-    
-    // Inicializar el primer paso como activo
-    if (stepContainers.length > 0) {
-      stepContainers[0].classList.add('active');
-      progressDots[0].classList.add('active');
-    }
-    
-    // Animación inicial de la línea de progreso
-    gsap.from(progressLine, {
-      scrollTrigger: {
-        trigger: "#how-it-works",
-        start: "top 70%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse"
-      },
-      scaleX: 0,
-      duration: 1.5,
-      ease: "power3.inOut"
-    });
-    
-    // Animación inicial de los contenedores de pasos
-    gsap.from(stepContainers, {
-      scrollTrigger: {
-        trigger: "#how-it-works",
-        start: "top 70%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse"
-      },
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.3,
-      ease: "power3.out"
-    });
-    
-    // Añadir interactividad a los puntos de progreso
-    progressDots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        // Actualizar puntos de progreso
-        progressDots.forEach((d, i) => {
-          if (i <= index) {
-            d.classList.add('completed');
-          } else {
-            d.classList.remove('completed');
-          }
-          d.classList.remove('active');
-        });
-        dot.classList.add('active');
-        
-        // Actualizar la línea de progreso
-        const progressPercentage = (index / (progressDots.length - 1)) * 100;
-        progressLine.style.setProperty('--progress-width', `${progressPercentage}%`);
-        
-        // Actualizar contenedores de pasos
-        stepContainers.forEach((container, i) => {
-          if (i === index) {
-            container.classList.add('active');
-            gsap.to(container, {
-              y: 0,
-              opacity: 1,
-              duration: 0.5,
-              ease: "power2.out"
-            });
-          } else {
-            container.classList.remove('active');
-            gsap.to(container, {
-              y: 20,
-              opacity: 0.7,
-              duration: 0.5,
-              ease: "power2.out"
-            });
-          }
-        });
-      });
-    });
-    
-    // Añadir interactividad a los contenedores de pasos
-    stepContainers.forEach((container, index) => {
-      container.addEventListener('click', () => {
-        progressDots[index].click();
-      });
-    });
-    
-    // Animación automática de los pasos (opcional)
-    let currentStep = 0;
-    const autoPlayInterval = 5000; // 5 segundos entre pasos
-    
-    function autoPlaySteps() {
-      currentStep = (currentStep + 1) % stepContainers.length;
-      progressDots[currentStep].click();
-    }
-    
-    // Iniciar reproducción automática
-    const autoPlayTimer = setInterval(autoPlaySteps, autoPlayInterval);
-    
-    // Detener reproducción automática al interactuar
-    const howItWorksSection = document.getElementById('how-it-works');
-    howItWorksSection.addEventListener('mouseenter', () => {
-      clearInterval(autoPlayTimer);
-    });
-  }
-  
   // Efecto parallax suave para el fondo
   function initParallaxEffect() {
     window.addEventListener('scroll', () => {
@@ -433,7 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
       animateSectionParticles();
       animateFeatureCards();
-      animateProcessSteps();
       animateTestimonials();
       animateFAQItems();
       animateDownloadSection();
@@ -1459,7 +1351,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Inicializar otras animaciones
     animateFeatureCards();
-    animateProcessSteps();
     animateTestimonials();
     animateFAQItems();
     initFAQInteraction();
@@ -1617,7 +1508,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Inicializar otras animaciones existentes
     animateFeatureCards();
-    animateProcessSteps();
     animateTestimonials();
     animateFAQItems();
     initFAQInteraction();

@@ -115,12 +115,30 @@
   color: var(--text-secondary);
 }
 
+@keyframes orbitPulse {
+  0% {
+    opacity: 0.7;
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.3);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(127, 90, 240, 0.5);
+  }
+  100% {
+    opacity: 0.7;
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.3);
+  }
+}
+
 .orbit-ring {
   position: absolute;
-  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border: 2px dashed rgba(127, 90, 240, 0.5);
   border-radius: 50%;
-  animation: rotate 60s linear infinite;
+  animation: rotate 60s linear infinite, orbitPulse 4s ease-in-out infinite;
   pointer-events: none;
+  box-shadow: 0 0 20px rgba(127, 90, 240, 0.3);
+  filter: drop-shadow(0 0 5px rgba(127, 90, 240, 0.3));
+  z-index: 2;
 }
 
 .orbit-ring-1 {
@@ -128,12 +146,77 @@
   height: 400px;
   animation-duration: 60s;
   animation-direction: reverse;
+  border-color: rgba(127, 90, 240, 0.6);
+  border-width: 3px;
 }
 
 .orbit-ring-2 {
   width: 550px;
   height: 550px;
   animation-duration: 90s;
+  border-color: rgba(127, 90, 240, 0.5);
+  border-width: 2px;
+}
+
+/* Añadir un efecto de brillo a los anillos */
+.orbit-ring::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(127, 90, 240, 0.2);
+  animation: rotate 120s linear infinite;
+  z-index: -1;
+}
+
+.orbit-ring-1::after {
+  animation-direction: normal;
+}
+
+.orbit-ring-2::after {
+  animation-direction: reverse;
+}
+
+/* Añadir puntos brillantes en las órbitas */
+.orbit-ring::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(127, 90, 240, 0.9);
+  border-radius: 50%;
+  top: 50%;
+  left: -4px;
+  box-shadow: 0 0 10px 2px rgba(127, 90, 240, 0.7);
+  filter: blur(1px);
+  animation: orbitDotPulse 3s ease-in-out infinite;
+}
+
+.orbit-ring-1::before {
+  background: rgba(127, 90, 240, 1);
+}
+
+.orbit-ring-2::before {
+  background: rgba(127, 90, 240, 0.8);
+}
+
+@keyframes orbitDotPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
 }
 
 .orbit-feature {
