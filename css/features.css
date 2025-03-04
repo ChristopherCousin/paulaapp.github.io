@@ -131,7 +131,6 @@
 }
 
 .orbit-feature:hover {
-  transform: scale(1.1);
   background: rgba(36, 38, 41, 0.9);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
@@ -142,7 +141,7 @@
 }
 
 .orbit-feature.active .orbit-feature-icon {
-  transform: scale(1.2);
+  /* Eliminamos transform: scale(1.2) para evitar el movimiento */
   filter: drop-shadow(0 0 10px rgba(127, 90, 240, 0.5));
 }
 
@@ -169,7 +168,7 @@
 }
 
 .orbit-feature:hover .orbit-feature-icon {
-  transform: scale(1.1);
+  /* Eliminamos transform: scale(1.1) para evitar el movimiento */
   filter: drop-shadow(0 0 8px rgba(127, 90, 240, 0.4));
 }
 
@@ -212,25 +211,25 @@
 .orbit-feature-1 {
   top: 50%;
   left: calc(50% - 200px);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) !important;
 }
 
 .orbit-feature-2 {
   top: calc(50% - 200px);
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) !important;
 }
 
 .orbit-feature-3 {
   top: 50%;
   left: calc(50% + 200px);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) !important;
 }
 
 .orbit-feature-4 {
   top: calc(50% + 200px);
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) !important;
 }
 
 .orbit-particles {
@@ -260,20 +259,47 @@
 .feature-detail-container {
   margin-top: 3rem;
   position: relative;
+  z-index: 20;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .feature-detail {
-  background: rgba(36, 38, 41, 0.7);
+  background: rgba(36, 38, 41, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: var(--border-radius-md);
   padding: 2rem;
-  transition: var(--transition-medium);
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  max-width: 800px;
-  margin: 0 auto;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(127, 90, 240, 0.3);
+  border: 1px solid rgba(127, 90, 240, 0.3);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.feature-detail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+
+.feature-detail::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(127, 90, 240, 0.5), transparent);
 }
 
 .feature-detail.hidden {
@@ -290,13 +316,28 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.feature-detail h3::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-primary);
+  transform: scaleX(0.7);
+  opacity: 0.7;
 }
 
 .feature-detail p {
   font-size: 1.1rem;
-  color: var(--text-secondary);
+  color: var(--text-light);
   max-width: 600px;
   margin: 0 auto;
+  line-height: 1.6;
 }
 
 .feature-grid {
@@ -359,4 +400,84 @@
   font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+/* Mejoras para la visualización en dispositivos móviles */
+@media (max-width: 768px) {
+  .features-orbit-container {
+    perspective: 800px;
+  }
+  
+  .orbit-center {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .orbit-center:active {
+    transform: scale(0.95);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orbit-feature {
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .orbit-feature.active {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(127, 90, 240, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(127, 90, 240, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(127, 90, 240, 0);
+    }
+  }
+  
+  .feature-detail-container {
+    margin-top: 2rem;
+  }
+  
+  .feature-detail {
+    padding: 1.5rem;
+    margin-top: 1rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(127, 90, 240, 0.3);
+  }
+  
+  .feature-detail h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .feature-detail p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* Optimizaciones para pantallas táctiles */
+@media (hover: none) {
+  .orbit-feature:hover {
+    transform: none;
+    background: rgba(36, 38, 41, 0.7);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orbit-feature:hover .orbit-feature-icon {
+    /* Eliminamos transform: scale(1.1) para evitar el movimiento */
+    filter: drop-shadow(0 0 8px rgba(127, 90, 240, 0.4));
+  }
+  
+  .orbit-feature:hover .orbit-feature-detail {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .orbit-feature.active {
+    /* Eliminamos transform: scale(1.1) para evitar el movimiento */
+  }
 } 

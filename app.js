@@ -195,10 +195,17 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Inicializar la interactividad del sistema de órbitas
   function initOrbitFeatures() {
+    // Seleccionar elementos
     const orbitFeatures = document.querySelectorAll('.orbit-feature');
     const featureDetailTitle = document.getElementById('feature-detail-title');
     const featureDetailDescription = document.getElementById('feature-detail-description');
     const featureDetail = document.getElementById('feature-detail');
+    
+    // Verificar que los elementos existen
+    if (!featureDetailTitle || !featureDetailDescription || !featureDetail) {
+      console.error('Elementos de detalle no encontrados');
+      return;
+    }
     
     // Datos de características
     const featuresData = {
@@ -220,33 +227,56 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
     
-    // Establecer la característica inicial
-    updateFeatureDetail('ia-emocional');
-    
-    // Añadir interactividad a las características
-    orbitFeatures.forEach(feature => {
-      feature.addEventListener('click', () => {
-        const featureId = feature.getAttribute('data-feature');
-        
-        // Actualizar el detalle de la característica con animación
-        featureDetail.classList.add('hidden');
-        
+    // Función simple para actualizar el detalle
+    function updateFeatureDetail(featureId) {
+      const feature = featuresData[featureId];
+      if (!feature) return;
+      
+      // Actualizar contenido
+      featureDetailTitle.textContent = feature.title;
+      featureDetailDescription.textContent = feature.description;
+      
+      // Aplicar efecto visual
+      featureDetail.style.display = 'block';
+      featureDetail.style.opacity = '0';
+      
+      // Forzar un reflow para que la transición funcione
+      void featureDetail.offsetWidth;
+      
+      // Mostrar con animación
+      featureDetail.style.opacity = '1';
+      featureDetail.style.transform = 'translateY(0)';
+      
+      // Desplazar a la vista si es necesario
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) {
         setTimeout(() => {
-          updateFeatureDetail(featureId);
-          featureDetail.classList.remove('hidden');
-        }, 300);
+          featureDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      }
+    }
+    
+    // Añadir evento de clic a cada característica
+    orbitFeatures.forEach(feature => {
+      feature.addEventListener('click', function() {
+        // Obtener el ID de la característica
+        const featureId = this.getAttribute('data-feature');
+        console.log('Característica clickeada:', featureId);
         
-        // Destacar la característica seleccionada
+        // Actualizar clases activas
         orbitFeatures.forEach(f => f.classList.remove('active'));
-        feature.classList.add('active');
+        this.classList.add('active');
+        
+        // Actualizar detalle
+        updateFeatureDetail(featureId);
       });
     });
     
-    // Función para actualizar el detalle de la característica
-    function updateFeatureDetail(featureId) {
-      const feature = featuresData[featureId];
-      featureDetailTitle.textContent = feature.title;
-      featureDetailDescription.textContent = feature.description;
+    // Inicializar con la primera característica
+    if (orbitFeatures.length > 0) {
+      const firstFeature = orbitFeatures[0];
+      firstFeature.classList.add('active');
+      updateFeatureDetail(firstFeature.getAttribute('data-feature'));
     }
   }
   

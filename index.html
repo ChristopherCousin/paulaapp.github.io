@@ -520,5 +520,99 @@
             </div>
         </div>
     </footer>
+    
+    <!-- Script para asegurar la interacción con las características -->
+    <script>
+        // Asegurar que la interacción con las características funcione correctamente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleccionar elementos
+            const orbitFeatures = document.querySelectorAll('.orbit-feature');
+            const featureDetailTitle = document.getElementById('feature-detail-title');
+            const featureDetailDescription = document.getElementById('feature-detail-description');
+            const featureDetail = document.getElementById('feature-detail');
+            
+            // Verificar que los elementos existen
+            if (!orbitFeatures.length || !featureDetailTitle || !featureDetailDescription || !featureDetail) {
+                console.error('Elementos no encontrados');
+                return;
+            }
+            
+            // Datos de características
+            const featuresData = {
+                'ia-emocional': {
+                    title: 'IA Emocional',
+                    description: 'Algoritmos de última generación que comprenden y responden a tus emociones de forma personalizada. Paula utiliza procesamiento de lenguaje natural avanzado para detectar sutilezas emocionales en tus mensajes.'
+                },
+                'memoria-contextual': {
+                    title: 'Memoria Contextual',
+                    description: 'Paula recuerda tus conversaciones para brindarte un apoyo continuo y personalizado, adaptándose a tu progreso. A diferencia de otros asistentes, Paula mantiene un historial contextual.'
+                },
+                'disponibilidad': {
+                    title: 'Disponibilidad 24/7',
+                    description: 'Accede a Paula en cualquier momento y lugar, recibiendo apoyo inmediato cuando más lo necesites. Sin horarios ni citas previas, Paula está siempre lista para escucharte.'
+                },
+                'privacidad': {
+                    title: 'Privacidad Garantizada',
+                    description: 'Tus conversaciones están encriptadas y son completamente confidenciales, garantizando un espacio seguro. Utilizamos encriptación de extremo a extremo.'
+                }
+            };
+            
+            // Función para actualizar el detalle
+            function updateFeatureDetail(featureId) {
+                const feature = featuresData[featureId];
+                if (!feature) return;
+                
+                // Actualizar contenido
+                featureDetailTitle.textContent = feature.title;
+                featureDetailDescription.textContent = feature.description;
+                
+                // Aplicar efecto visual
+                featureDetail.style.opacity = '0';
+                
+                // Forzar un reflow para que la transición funcione
+                void featureDetail.offsetWidth;
+                
+                // Mostrar con animación
+                featureDetail.style.opacity = '1';
+                
+                // Desplazar a la vista si es necesario
+                const isMobile = window.innerWidth <= 768;
+                if (isMobile) {
+                    setTimeout(() => {
+                        featureDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                }
+            }
+            
+            // Añadir evento de clic a cada característica
+            orbitFeatures.forEach(feature => {
+                // Usar tanto click como touchend para mayor compatibilidad
+                ['click', 'touchend'].forEach(eventType => {
+                    feature.addEventListener(eventType, function(e) {
+                        // Prevenir comportamiento por defecto
+                        e.preventDefault();
+                        
+                        // Obtener el ID de la característica
+                        const featureId = this.getAttribute('data-feature');
+                        console.log('Característica seleccionada:', featureId);
+                        
+                        // Actualizar clases activas
+                        orbitFeatures.forEach(f => f.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Actualizar detalle
+                        updateFeatureDetail(featureId);
+                    });
+                });
+            });
+            
+            // Inicializar con la primera característica
+            if (orbitFeatures.length > 0) {
+                const firstFeature = orbitFeatures[0];
+                firstFeature.classList.add('active');
+                updateFeatureDetail(firstFeature.getAttribute('data-feature'));
+            }
+        });
+    </script>
 </body>
 </html>
