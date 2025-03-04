@@ -1,0 +1,13 @@
+/* Main CSS file that imports all modular CSS files */
+
+@import 'base.css';
+@import 'header.css';
+@import 'hero.css';
+@import 'features.css';
+@import 'how-it-works.css';
+@import 'testimonials.css';
+@import 'faq.css';
+@import 'download.css';
+@import 'footer.css';
+@import 'animations.css';
+@import 'responsive.css'; 

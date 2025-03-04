@@ -1,0 +1,143 @@
+#download {
+  padding: 8rem 0;
+  position: relative;
+  background: linear-gradient(0deg, var(--bg-primary) 0%, rgba(22, 22, 26, 0.9) 100%);
+  overflow: hidden;
+}
+
+#download::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 70% 30%, rgba(44, 182, 125, 0.1), transparent 70%);
+}
+
+#download .container {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+}
+
+#download .section-header {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+}
+
+#download .section-title {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+#download .section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.download {
+  position: relative;
+  padding: 6rem 0;
+}
+
+.download h2,
+.download .section-subtitle {
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.download-mockup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  margin: 4rem 0;
+}
+
+.download-phone {
+  flex: 1;
+  max-width: 300px;
+  position: relative;
+}
+
+.download-phone-screen {
+  width: 100%;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-strong);
+}
+
+.download-features {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.download-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.download-feature-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(127, 90, 240, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.download-feature-text h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.download-feature-text p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.app-stores {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.store-button {
+  display: inline-block;
+  transition: var(--transition-fast);
+}
+
+.store-button img {
+  height: 50px;
+  width: auto;
+  transition: var(--transition-fast);
+}
+
+.store-button:hover {
+  transform: translateY(-5px);
+}
+
+.store-button:hover img {
+  filter: drop-shadow(0 5px 15px rgba(127, 90, 240, 0.5));
+} 

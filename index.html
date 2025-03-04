@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <title>Paula - Tu psicóloga personal con IA</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paula - Tu compañero IA de bienestar emocional</title>
-    <meta name="description" content="Descarga Paula, tu asistente virtual de IA para el bienestar emocional, ofreciendo apoyo psicológico personalizado 24/7.">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Paula, tu asistente virtual de IA para el bienestar emocional. Disponible 24/7 para apoyarte en tu viaje de crecimiento personal.">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="app.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 </head>
 <body>
+    <!-- Fondo neuronal animado -->
+    <div class="neural-background">
+        <canvas id="neuralCanvas"></canvas>
+    </div>
+    
+    <!-- Partículas flotantes globales -->
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
     <header class="header">
         <nav class="container nav">
             <div class="logo-container">
+                <div class="logo-circle">
+                    <span class="logo-letter">P</span>
+                </div>
                 <a href="index.html" class="logo-text">PAULA</a>
             </div>
             <button class="menu-toggle" aria-label="Toggle menu">
@@ -34,23 +59,52 @@
     </header>
 
     <main>
-        <section id="hero" class="hero container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="gradient-text">Revoluciona</span> tu bienestar<br>emocional con IA
-                </h1>
-                <p class="hero-description">Paula utiliza inteligencia artificial avanzada para ofrecerte apoyo emocional personalizado y orientación psicológica 24/7, ayudándote a alcanzar una mejor salud mental y crecimiento personal.</p>
-                <div class="hero-cta">
-                    <a href="#download" class="cta-button">Comienza tu viaje emocional</a>
-                    <a href="#how-it-works" class="secondary-button">Descubre cómo funciona</a>
+        <!-- Hero Section con Simulación de Caso Clínico -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Tu psicóloga personal con <span class="gradient-text">inteligencia artificial</span></h1>
+                    <p class="hero-description">Paula te escucha, te entiende y te acompaña en tu viaje de bienestar emocional. Disponible 24/7, personalizada para ti.</p>
+                    <div class="hero-cta">
+                        <a href="#download" class="primary-button">
+                            <span class="button-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            </span>
+                            Descargar Ahora
+                        </a>
+                        <a href="#how-it-works" class="secondary-button">
+                            <span class="button-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                            </span>
+                            Ver cómo funciona
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="gradient-sphere"></div>
-                <div class="floating-shapes">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-3"></div>
+                
+                <div class="app-showcase">
+                    <div class="phone-frame">
+                        <video id="paulaVideo" class="app-demo-video" autoplay muted loop playsinline>
+                            <source src="assets/paula.webm" type="video/webm">
+                            Tu navegador no soporta videos HTML5.
+                        </video>
+                        <div class="video-glow"></div>
+                    </div>
+                    
+                    <div class="case-study-floating">
+                        <div class="case-badge">Caso de estudio</div>
+                        <h3>Manejo de ansiedad social</h3>
+                        <p>Basado en un caso real de terapia cognitivo-conductual para el tratamiento de la ansiedad social, publicado en el Journal of Clinical Psychology (2019).</p>
+                        <div class="case-metrics">
+                            <div class="metric">
+                                <span class="metric-value">87%</span>
+                                <span class="metric-label">Reducción de síntomas</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">6</span>
+                                <span class="metric-label">Semanas de terapia</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -61,10 +115,27 @@
                     <h2 class="section-title">Potencia tu mente con<br><span class="gradient-text">tecnología avanzada</span></h2>
                     <p class="section-subtitle">Descubre las capacidades únicas que hacen de Paula tu mejor aliado emocional</p>
                 </div>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="card-header">
-                            <div class="icon-container ai-icon">
+                
+                <div class="features-orbit-container">
+                    <!-- Centro de la órbita - Paula -->
+                    <div class="orbit-center">
+                        <div class="orbit-center-content">
+                            <div class="orbit-center-icon">
+                                <div class="paula-avatar">P</div>
+                            </div>
+                            <h3>Paula</h3>
+                            <p>Tu asistente de IA emocional</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Órbitas de características -->
+                    <div class="orbit-ring orbit-ring-1"></div>
+                    <div class="orbit-ring orbit-ring-2"></div>
+                    
+                    <!-- Características en órbita -->
+                    <div class="orbit-feature orbit-feature-1" data-feature="ia-emocional">
+                        <div class="orbit-feature-content">
+                            <div class="orbit-feature-icon ai-icon">
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.5 14h-9c-.55 0-1-.45-1-1s.45-1 1-1h9c.55 0 1 .45 1 1s-.45 1-1 1zm0-4h-9c-.55 0-1-.45-1-1s.45-1 1-1h9c.55 0 1 .45 1 1s-.45 1-1 1z" fill="url(#paint0_linear)"/>
                                     <defs>
@@ -77,12 +148,14 @@
                             </div>
                             <h3>IA Emocional</h3>
                         </div>
-                        <p>Algoritmos de última generación que comprenden y responden a tus emociones de forma personalizada.</p>
+                        <div class="orbit-feature-detail">
+                            <p>Algoritmos de última generación que comprenden y responden a tus emociones de forma personalizada.</p>
+                        </div>
                     </div>
-
-                    <div class="feature-card">
-                        <div class="card-header">
-                            <div class="icon-container memory-icon">
+                    
+                    <div class="orbit-feature orbit-feature-2" data-feature="memoria-contextual">
+                        <div class="orbit-feature-content">
+                            <div class="orbit-feature-icon memory-icon">
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13 3v6h8V3h-8zm6 4h-4V5h4v2zm-6 7h8v-6h-8v6zm6-4h-4v2h4v-2zM3 21h8v-6H3v6zm2-4h4v2H5v-2zm-2-4h8v-6H3v6zm2-4h4v2H5v-2zm8 8h8v-6h-8v6zm6-4h-4v2h4v-2z" fill="url(#paint1_linear)"/>
                                     <defs>
@@ -95,12 +168,14 @@
                             </div>
                             <h3>Memoria Contextual</h3>
                         </div>
-                        <p>Paula recuerda tus conversaciones para brindarte un apoyo continuo y personalizado, adaptándose a tu progreso.</p>
+                        <div class="orbit-feature-detail">
+                            <p>Paula recuerda tus conversaciones para brindarte un apoyo continuo y personalizado, adaptándose a tu progreso.</p>
+                        </div>
                     </div>
-
-                    <div class="feature-card">
-                        <div class="card-header">
-                            <div class="icon-container support-icon">
+                    
+                    <div class="orbit-feature orbit-feature-3" data-feature="disponibilidad">
+                        <div class="orbit-feature-content">
+                            <div class="orbit-feature-icon support-icon">
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z" fill="url(#paint2_linear)"/>
                                     <defs>
@@ -113,12 +188,14 @@
                             </div>
                             <h3>Disponibilidad 24/7</h3>
                         </div>
-                        <p>Accede a Paula en cualquier momento y lugar, recibiendo apoyo inmediato cuando más lo necesites.</p>
+                        <div class="orbit-feature-detail">
+                            <p>Accede a Paula en cualquier momento y lugar, recibiendo apoyo inmediato cuando más lo necesites.</p>
+                        </div>
                     </div>
-
-                    <div class="feature-card">
-                        <div class="card-header">
-                            <div class="icon-container privacy-icon">
+                    
+                    <div class="orbit-feature orbit-feature-4" data-feature="privacidad">
+                        <div class="orbit-feature-content">
+                            <div class="orbit-feature-icon privacy-icon">
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" fill="url(#paint3_linear)"/>
                                     <defs>
@@ -131,7 +208,29 @@
                             </div>
                             <h3>Privacidad Garantizada</h3>
                         </div>
-                        <p>Tus conversaciones están encriptadas y son completamente confidenciales, garantizando un espacio seguro.</p>
+                        <div class="orbit-feature-detail">
+                            <p>Tus conversaciones están encriptadas y son completamente confidenciales, garantizando un espacio seguro.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Partículas decorativas -->
+                    <div class="orbit-particles">
+                        <div class="orbit-particle orbit-particle-1"></div>
+                        <div class="orbit-particle orbit-particle-2"></div>
+                        <div class="orbit-particle orbit-particle-3"></div>
+                        <div class="orbit-particle orbit-particle-4"></div>
+                        <div class="orbit-particle orbit-particle-5"></div>
+                        <div class="orbit-particle orbit-particle-6"></div>
+                    </div>
+                </div>
+                
+                <!-- Descripción detallada de la característica seleccionada -->
+                <div class="feature-detail-container">
+                    <div class="feature-detail" id="feature-detail">
+                        <div class="feature-detail-content">
+                            <h3 id="feature-detail-title">IA Emocional</h3>
+                            <p id="feature-detail-description">Algoritmos de última generación que comprenden y responden a tus emociones de forma personalizada.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -139,27 +238,56 @@
 
         <section id="how-it-works" class="process">
             <div class="container">
-                <h2 class="section-title">Cómo funciona Paula</h2>
+                <h2 class="section-title">Cómo funciona <span class="gradient-text">Paula</span></h2>
                 <div class="process-steps">
-                    <div class="step-container">
+                    <div class="steps-progress">
+                        <div class="progress-line"></div>
+                        <div class="progress-dots">
+                            <div class="progress-dot" data-step="1"></div>
+                            <div class="progress-dot" data-step="2"></div>
+                            <div class="progress-dot" data-step="3"></div>
+                            <div class="progress-dot" data-step="4"></div>
+                        </div>
+                    </div>
+                    <div class="step-container" data-step="1">
                         <div class="step-circle">1</div>
-                        <h3>Descarga la App</h3>
-                        <p>Disponible en iOS y Android</p>
+                        <div class="step-content">
+                            <h3>Descarga la App</h3>
+                            <p>Disponible en iOS y Android. Comienza tu viaje hacia el bienestar emocional con un simple toque.</p>
+                            <div class="step-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="step-container">
+                    <div class="step-container" data-step="2">
                         <div class="step-circle">2</div>
-                        <h3>Crea tu perfil</h3>
-                        <p>Responde algunas preguntas para personalizar tu experiencia y ayudar a Paula a entender tus necesidades únicas.</p>
+                        <div class="step-content">
+                            <h3>Crea tu perfil</h3>
+                            <p>Responde algunas preguntas para personalizar tu experiencia y ayudar a Paula a entender tus necesidades únicas.</p>
+                            <div class="step-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="step-container">
+                    <div class="step-container" data-step="3">
                         <div class="step-circle">3</div>
-                        <h3>Comienza a chatear</h3>
-                        <p>Inicia una conversación con Paula sobre cualquier tema que te preocupe y recibe apoyo empático y orientación psicológica.</p>
+                        <div class="step-content">
+                            <h3>Comienza a chatear</h3>
+                            <p>Inicia una conversación con Paula sobre cualquier tema que te preocupe y recibe apoyo empático y orientación psicológica.</p>
+                            <div class="step-icon">
+                                <i class="fas fa-comment-dots"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="step-container">
+                    <div class="step-container" data-step="4">
                         <div class="step-circle">4</div>
-                        <h3>Crece y mejora</h3>
-                        <p>Practica las técnicas y consejos proporcionados por Paula para mejorar tu bienestar emocional día a día.</p>
+                        <div class="step-content">
+                            <h3>Crece y mejora</h3>
+                            <p>Practica las técnicas y consejos proporcionados por Paula para mejorar tu bienestar emocional día a día.</p>
+                            <div class="step-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -167,11 +295,13 @@
 
         <section id="testimonials" class="testimonials">
             <div class="container">
-                <h2 class="section-title">Testimonios de usuarios</h2>
+                <h2 class="section-title">Testimonios de <span class="gradient-text">usuarios</span></h2>
                 <div class="testimonial-grid">
                     <div class="testimonial-card">
                         <div class="testimonial-header">
-                            <img src="assets/users/maria.jpg" alt="María G." class="testimonial-avatar">
+                            <div class="testimonial-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
                             <div class="user-info">
                                 <h4>María G.</h4>
                                 <span>Profesional de Marketing</span>
@@ -184,7 +314,9 @@
                     
                     <div class="testimonial-card">
                         <div class="testimonial-header">
-                            <img src="assets/users/carlos.jpg" alt="Carlos R." class="testimonial-avatar">
+                            <div class="testimonial-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
                             <div class="user-info">
                                 <h4>Carlos R.</h4>
                                 <span>Estudiante Universitario</span>
@@ -197,7 +329,9 @@
                     
                     <div class="testimonial-card">
                         <div class="testimonial-header">
-                            <img src="assets/users/ana.jpg" alt="Ana P." class="testimonial-avatar">
+                            <div class="testimonial-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
                             <div class="user-info">
                                 <h4>Ana P.</h4>
                                 <span>Emprendedora</span>
@@ -229,25 +363,33 @@
         <section id="faq" class="faq">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Preguntas frecuentes</h2>
+                    <h2 class="section-title">Preguntas <span class="gradient-text">frecuentes</span></h2>
                     <p class="section-subtitle">Encuentra respuestas rápidas a las dudas más comunes</p>
                 </div>
                 <div class="faq-grid">
                     <div class="faq-item">
                         <h3 class="faq-question">¿Es Paula un reemplazo para la terapia tradicional?</h3>
-                        <p class="faq-answer">Paula es un complemento valioso para el bienestar emocional, pero no reemplaza la terapia con un profesional de la salud mental. Siempre recomendamos buscar ayuda profesional para problemas graves o persistentes.</p>
+                        <div class="faq-answer">
+                            <p>Paula es un complemento valioso para el bienestar emocional, pero no reemplaza la terapia con un profesional de la salud mental. Siempre recomendamos buscar ayuda profesional para problemas graves o persistentes.</p>
+                        </div>
                     </div>
                     <div class="faq-item">
                         <h3 class="faq-question">¿Cómo garantiza Paula la privacidad de mis conversaciones?</h3>
-                        <p class="faq-answer">Todas las conversaciones con Paula están encriptadas de extremo a extremo y se almacenan de forma segura. No compartimos tu información personal con terceros y puedes eliminar tus datos en cualquier momento.</p>
+                        <div class="faq-answer">
+                            <p>Todas las conversaciones con Paula están encriptadas de extremo a extremo y se almacenan de forma segura. No compartimos tu información personal con terceros y puedes eliminar tus datos en cualquier momento.</p>
+                        </div>
                     </div>
                     <div class="faq-item">
                         <h3 class="faq-question">¿Con qué frecuencia debo usar Paula?</h3>
-                        <p class="faq-answer">Recomendamos usar Paula regularmente para obtener los mejores resultados. Muchos usuarios encuentran beneficioso chatear diariamente, pero la frecuencia puede variar según tus necesidades personales.</p>
+                        <div class="faq-answer">
+                            <p>Recomendamos usar Paula regularmente para obtener los mejores resultados. Muchos usuarios encuentran beneficioso chatear diariamente, pero la frecuencia puede variar según tus necesidades personales.</p>
+                        </div>
                     </div>
                     <div class="faq-item">
                         <h3 class="faq-question">¿Paula puede ayudar en situaciones de crisis?</h3>
-                        <p class="faq-answer">Aunque Paula puede ofrecer apoyo inmediato, no está diseñada para emergencias. En situaciones de crisis, siempre recomendamos buscar ayuda profesional o contactar a servicios de emergencia locales.</p>
+                        <div class="faq-answer">
+                            <p>Aunque Paula puede ofrecer apoyo inmediato, no está diseñada para emergencias. En situaciones de crisis, siempre recomendamos buscar ayuda profesional o contactar a servicios de emergencia locales.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -256,9 +398,48 @@
         <section id="download" class="download">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Descarga Paula ahora</h2>
+                    <h2 class="section-title">Descarga <span class="gradient-text">Paula</span> ahora</h2>
                     <p class="section-subtitle">Comienza tu viaje hacia el bienestar emocional hoy mismo</p>
                 </div>
+                
+                <div class="download-mockup">
+                    <div class="download-phone">
+                        <img src="assets/app-screen.jpg" alt="Paula App" class="download-phone-screen">
+                    </div>
+                    
+                    <div class="download-features">
+                        <div class="download-feature-item">
+                            <div class="download-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            </div>
+                            <div class="download-feature-text">
+                                <h4>Apoyo emocional 24/7</h4>
+                                <p>Accede a Paula en cualquier momento del día o la noche, siempre estará disponible para escucharte y apoyarte.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="download-feature-item">
+                            <div class="download-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            </div>
+                            <div class="download-feature-text">
+                                <h4>Privacidad garantizada</h4>
+                                <p>Tus conversaciones están protegidas con encriptación de extremo a extremo y nunca se comparten con terceros.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="download-feature-item">
+                            <div class="download-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                            </div>
+                            <div class="download-feature-text">
+                                <h4>Recordatorios personalizados</h4>
+                                <p>Recibe recordatorios adaptados a tus necesidades para mantener tus prácticas de bienestar emocional.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="app-stores">
                     <a href="#" class="store-button">
                         <img src="assets/app-store.svg" alt="Descargar en App Store">
