@@ -3,13 +3,34 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
+  const navItems = document.querySelectorAll('.nav-links li');
   const body = document.body;
+  const header = document.querySelector('.header');
+  
+  // Añadir índices a los elementos del menú para animaciones escalonadas
+  navItems.forEach((item, index) => {
+    item.style.setProperty('--item-index', index);
+  });
+  
+  // Crear el overlay para el menú móvil
+  const navOverlay = document.createElement('div');
+  navOverlay.classList.add('nav-overlay');
+  document.body.appendChild(navOverlay);
 
   // Mejorado el toggle del menú móvil
   menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
     menuToggle.classList.toggle('active');
     body.classList.toggle('menu-open'); // Prevenir scroll cuando el menú está abierto
+    navOverlay.classList.toggle('active'); // Mostrar/ocultar overlay
+  });
+
+  // Cerrar el menú al hacer clic en el overlay
+  navOverlay.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+    menuToggle.classList.remove('active');
+    body.classList.remove('menu-open');
+    navOverlay.classList.remove('active');
   });
 
   // Cerrar el menú al hacer clic fuera de él
@@ -20,6 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinks.classList.remove('active');
       menuToggle.classList.remove('active');
       body.classList.remove('menu-open');
+      navOverlay.classList.remove('active');
+    }
+  });
+
+  // Cambiar el estilo del header al hacer scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
     }
   });
 
@@ -30,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinks.classList.remove('active');
       menuToggle.classList.remove('active');
       body.classList.remove('menu-open');
+      navOverlay.classList.remove('active');
       document.querySelector(this.getAttribute('href')).scrollIntoView({
         behavior: 'smooth'
       });
@@ -1545,5 +1577,77 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Actualizar en resize
     window.addEventListener('resize', handleResponsive);
+  });
+
+  // Ajustar la posición del caso de estudio en dispositivos móviles
+  function adjustCaseStudyPosition() {
+    const phoneFrame = document.querySelector('.phone-frame');
+    const caseStudy = document.querySelector('.case-study-floating');
+    
+    if (phoneFrame && caseStudy && window.innerWidth <= 768) {
+      // Calcular la posición óptima basada en el tamaño del teléfono
+      const phoneHeight = phoneFrame.offsetHeight;
+      const caseStudyHeight = caseStudy.offsetHeight;
+      
+      // Ajustar el margen superior del caso de estudio para que se solape ligeramente con el teléfono
+      const overlapAmount = Math.min(40, phoneHeight * 0.1);
+      caseStudy.style.marginTop = `-${overlapAmount}px`;
+    } else if (caseStudy) {
+      // Restablecer para pantallas más grandes
+      caseStudy.style.marginTop = '';
+    }
+  }
+  
+  // Ejecutar al cargar y al cambiar el tamaño de la ventana
+  adjustCaseStudyPosition();
+  window.addEventListener('resize', adjustCaseStudyPosition);
+
+  // Función para manejar la reproducción del video en dispositivos móviles
+  document.addEventListener('DOMContentLoaded', function() {
+    const paulaVideo = document.getElementById('paulaVideo');
+    
+    if (paulaVideo) {
+        // Asegurarse de que el video se cargue correctamente
+        paulaVideo.load();
+        
+        // Intentar reproducir el video automáticamente
+        const playPromise = paulaVideo.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Reproducción automática iniciada con éxito
+                console.log('Video reproducido automáticamente');
+            }).catch(error => {
+                // Reproducción automática fallida, probablemente por políticas del navegador
+                console.log('Reproducción automática fallida:', error);
+                
+                // Añadir un botón de reproducción para dispositivos móviles si es necesario
+                if (window.innerWidth <= 768) {
+                    const playButton = document.createElement('button');
+                    playButton.className = 'mobile-play-button';
+                    playButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>';
+                    
+                    const phoneFrame = document.querySelector('.phone-frame');
+                    if (phoneFrame) {
+                        phoneFrame.appendChild(playButton);
+                        
+                        playButton.addEventListener('click', function() {
+                            paulaVideo.play();
+                            playButton.style.display = 'none';
+                        });
+                    }
+                }
+            });
+        }
+        
+        // Optimización para dispositivos móviles
+        if (window.innerWidth <= 768) {
+            // Reducir la calidad del video en dispositivos móviles si es necesario
+            paulaVideo.setAttribute('playsinline', '');
+            
+            // Asegurarse de que el video se ajuste correctamente
+            paulaVideo.style.objectFit = 'cover';
+        }
+    }
   });
 });
