@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Inicializar la sección FAQ interactiva
   initFaqSection();
   
+  // Inicializar funcionalidades del footer optimizado
+  initFooterFunctionality();
+  
   // Variables para el header
   const header = document.querySelector('.header');
   const body = document.body;
@@ -1947,5 +1950,70 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
       scrollToTestimonial(currentIndex);
     });
+  }
+
+  // Función para inicializar las funcionalidades del footer optimizado
+  function initFooterFunctionality() {
+    // Sistema de acordeón para el footer en móvil
+    const accordionHeaders = document.querySelectorAll('.footer-links h4, .footer-legal h4, .footer-contact h4');
+    
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const parent = this.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+    
+    // Funcionalidad para el formulario de newsletter
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Eliminar mensaje de éxito anterior si existe
+        const existingSuccess = this.querySelector('.newsletter-success');
+        if (existingSuccess) {
+          existingSuccess.remove();
+        }
+        
+        // Mostrar mensaje de éxito
+        const successMessage = document.createElement('div');
+        successMessage.className = 'newsletter-success';
+        successMessage.textContent = '¡Suscripción exitosa!';
+        
+        this.appendChild(successMessage);
+        setTimeout(() => {
+          successMessage.classList.add('show');
+        }, 10);
+        
+        // Ocultar mensaje después de 3 segundos
+        setTimeout(() => {
+          successMessage.classList.remove('show');
+          setTimeout(() => {
+            successMessage.remove();
+          }, 300);
+        }, 3000);
+        
+        // Limpiar el formulario
+        this.reset();
+      });
+    }
+    
+    // Detectar cuando el footer entra en el viewport para activar animaciones
+    const footer = document.querySelector('.footer');
+    if (footer) {
+      const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            footer.classList.add('in-view');
+            footerObserver.unobserve(footer);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      footerObserver.observe(footer);
+    }
   }
 });

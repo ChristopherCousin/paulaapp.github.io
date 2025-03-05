@@ -1,0 +1,257 @@
+/* Estilos móviles para la sección de descarga */
+@media (max-width: 992px) {
+  #download {
+    padding: 4rem 0;
+    position: relative;
+  }
+
+  /* Añadir un sutil efecto de brillo que no interfiera con el fondo global */
+  #download::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 800px;
+    height: 300px;
+    background: radial-gradient(ellipse at center, rgba(127, 90, 240, 0.1) 0%, transparent 70%);
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+  }
+
+  .download-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .download-mockup-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .download-phone {
+    max-width: 220px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  /* Mejora visual para el teléfono */
+  .download-phone-enhanced {
+    animation: gentle-float 6s infinite ease-in-out;
+  }
+
+  @keyframes gentle-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .phone-frame {
+    border-width: 8px;
+    border-radius: 28px;
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.3),
+      0 5px 15px rgba(127, 90, 240, 0.2);
+    overflow: hidden;
+  }
+
+  .phone-neurons {
+    opacity: 0.8;
+  }
+
+  .neuron-node {
+    animation-duration: 3s;
+  }
+
+  .neuron-connection {
+    animation-duration: 4s;
+  }
+
+  .download-phone-screen {
+    border-radius: 20px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Mejorar CTA */
+  .download-cta {
+    position: relative;
+    padding: 0 1rem;
+    gap: 0.5rem;
+  }
+
+  .cta-text-enhanced {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-top: 1.75rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .cta-text-enhanced::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 25%;
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(127, 90, 240, 0.5), transparent);
+  }
+
+  .app-stores-enhanced {
+    position: relative;
+    margin-top: 0.35rem;
+  }
+
+  /* Sutil efecto de brillo alrededor de los botones */
+  .app-stores-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(127, 90, 240, 0.08) 0%, transparent 80%);
+    filter: blur(10px);
+    z-index: -1;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  #download {
+    padding: 3.5rem 0 4rem;
+  }
+
+  #download::before {
+    height: 250px;
+  }
+
+  .download-content {
+    gap: 2rem;
+  }
+
+  .app-stores {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 0.3rem;
+  }
+
+  .store-button {
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .store-button:active {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+  }
+
+  .store-badge {
+    width: 220px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  }
+}
+
+@media (max-width: 576px) {
+  #download {
+    padding: 3rem 0 3.5rem;
+  }
+
+  .download-phone {
+    max-width: 200px;
+  }
+
+  .phone-frame {
+    border-width: 6px;
+    border-radius: 24px;
+  }
+
+  .download-phone-screen {
+    border-radius: 18px;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .store-badge {
+    width: 200px;
+  }
+
+  .cta-text {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .download-cta {
+    gap: 0.35rem;
+  }
+  
+  .app-stores {
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 375px) {
+  #download {
+    padding: 2.5rem 0 3rem;
+  }
+
+  .download-phone {
+    max-width: 180px;
+  }
+
+  .phone-frame {
+    border-width: 5px;
+    border-radius: 22px;
+  }
+
+  .download-phone-screen {
+    border-radius: 17px;
+  }
+
+  .store-badge {
+    width: 180px;
+  }
+  
+  .cta-text-enhanced {
+    margin-top: 0.6rem;
+    margin-bottom: 0.15rem;
+  }
+  
+  .app-stores {
+    gap: 0.5rem;
+  }
+}
+
+/* Optimizaciones para dispositivos táctiles */
+@media (hover: none) {
+  .store-button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .store-button:active {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Animación sutil para los nodos neuronales */
+@keyframes pulse-node {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+} 

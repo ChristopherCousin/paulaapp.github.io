@@ -106,19 +106,6 @@
     margin-top: 3rem;
     max-width: 500px;
   }
-  
-  /* Ajustes para la sección de descarga */
-  #download {
-    padding: 4.5rem 0;
-  }
-  
-  .app-stores {
-    max-width: 550px;
-    gap: 1.5rem;
-  }
-  .store-badge {
-    width: 230px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -441,33 +428,34 @@
   
   /* Ajustes para la sección de descarga */
   #download {
-    padding: 4rem 0;
+    padding: 4rem 0 3rem;
+  }
+  
+  .download-content {
+    flex-direction: column;
+    gap: 2rem;
   }
   
   .download-mockup-wrapper {
-    margin-bottom: 2rem;
+    margin-bottom: 0;
   }
   
-  .download-phone {
-    max-width: 220px;
+  .download-info {
+    padding: 1.5rem 1rem;
   }
   
-  .phone-frame {
-    border-width: 8px;
-    border-radius: 28px;
+  .app-stores {
+    gap: 1rem;
+    margin: 0.75rem auto;
+    flex-direction: row;
   }
-  
-  .download-phone-screen {
-    border-radius: 20px;
+  .store-badge {
+    width: 220px;
   }
   
   .download-feature-item {
-    padding: 1rem;
-  }
-  
-  .download-feature-icon {
-    width: 40px;
-    height: 40px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
   }
   
   .download-feature-text h4 {
@@ -475,16 +463,7 @@
   }
   
   .download-feature-text p {
-    font-size: 0.85rem;
-  }
-  
-  .app-stores {
-    flex-direction: column;   /* Pasa los botones a columna */
-    max-width: 400px;         /* Reduce un poco el ancho máximo */
-    margin: 1.5rem auto;
-  }
-  .store-badge {
-    width: 220px;
+    font-size: 0.9rem;
   }
 }
 
@@ -579,18 +558,6 @@
   
   .app-video-container {
     height: 250px;
-  }
-  
-  .footer-logo {
-    margin-bottom: 1.5rem;
-  }
-  
-  .footer-social a {
-    margin: 0 0.5rem;
-  }
-  
-  .footer-bottom {
-    padding: 1.5rem 0;
   }
   
   .copyright {
@@ -755,15 +722,47 @@
     justify-content: center;
   }
   
+  .download-info {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .app-stores {
+    gap: 0.75rem;
+  }
+  
+  .store-badge {
+    width: 150px;
+  }
+  
+  #download {
+    padding: 3rem 0 2.5rem;
+  }
+  
+  .download-content {
+    gap: 1.5rem;
+  }
+  
+  .download-feature-item {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .download-feature-text h4 {
+    font-size: 1rem;
+  }
+  
+  .download-feature-text p {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
   .app-stores {
-    gap: 1rem;
+    gap: 0.5rem;
   }
   
   .store-badge {
-    width: 180px;
+    width: 140px;
   }
 }
 
@@ -930,12 +929,11 @@
   /* Eliminar ajustes de los picos para pantallas muy pequeñas */
   
   .app-stores {
-    gap: 1rem;
-    flex-direction: column;
+    gap: 0.5rem;
   }
   
   .store-badge {
-    width: 180px;
+    width: 130px;
   }
   
   /* Ajustes para la sección de descarga */
@@ -1137,29 +1135,29 @@
   
   .app-stores {
     gap: 0.75rem;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
   }
   
   .store-button {
-    width: 100px;
+    width: auto;
+    flex: 0 0 auto;
   }
   
   .store-badge {
-    width: 150px;
+    width: 120px;
+    height: auto;
   }
 }
 
 @media (min-width: 992px) {
-  /* Estructura del contenido de descarga */
-  .download-content {
-    grid-template-columns: 0.7fr 1.3fr;
-    align-items: center;
+  .container {
+    max-width: 960px;
   }
 }
 
 @media (min-width: 1200px) {
-  /* Estructura del contenido de descarga */
-  .download-content {
-    grid-template-columns: 1fr 1fr;
+  .container {
+    max-width: 1140px;
   }
 } 

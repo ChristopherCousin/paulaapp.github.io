@@ -1,0 +1,485 @@
+/* Footer - Versión Móvil Optimizada */
+@media (max-width: 768px) {
+  .footer {
+    padding: 4rem 0 2rem;
+  }
+
+  /* Estructura del grid para móvil - Optimizada */
+  .footer-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Ocultar línea de conexión en móvil */
+  .footer-grid::after {
+    display: none;
+  }
+
+  /* Sección principal con logo y descripción */
+  .footer-main {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  /* Título del footer */
+  .footer-title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+  }
+
+  /* Descripción */
+  .footer-description {
+    text-align: center;
+    margin: 0 auto 1.5rem;
+    max-width: 500px;
+  }
+
+  /* Newsletter - Optimizado para móvil */
+  .footer-newsletter {
+    margin: 0 auto 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    max-width: 500px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .footer-newsletter h4 {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  /* Formulario de newsletter optimizado */
+  .newsletter-form {
+    display: flex;
+    flex-direction: row; /* Mantener en línea */
+    flex-wrap: wrap; /* Permitir que se ajuste si es necesario */
+    gap: 0.8rem;
+    justify-content: center;
+  }
+
+  .newsletter-form input {
+    flex: 1 1 60%; /* Tomar la mayor parte del espacio */
+    min-width: 150px; /* Asegurar un ancho mínimo */
+    padding: 0.9rem 1rem;
+    border-radius: 50px;
+    text-align: left;
+  }
+
+  .newsletter-form button {
+    flex: 0 0 auto; /* No crecer ni encoger */
+    padding: 0.9rem 1.2rem; /* Reducir el padding horizontal */
+    border-radius: 50px;
+    min-width: 120px;
+  }
+
+  /* Sistema de acordeón para secciones de enlaces */
+  .footer-links, 
+  .footer-legal, 
+  .footer-contact {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 0;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .footer h4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    padding: 1.2rem;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    font-size: 1.1rem;
+  }
+
+  .footer h4::after {
+    content: '\f107'; /* Icono de flecha hacia abajo */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: static;
+    margin-left: auto;
+    transition: transform 0.3s ease;
+    background: none;
+    width: auto;
+    height: auto;
+    transform: rotate(0deg);
+  }
+
+  .footer-links.active h4::after,
+  .footer-legal.active h4::after,
+  .footer-contact.active h4::after {
+    transform: rotate(180deg);
+  }
+
+  .footer-links ul,
+  .footer-legal ul,
+  .footer-contact .contact-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    padding: 0 1.2rem;
+    margin: 0;
+  }
+
+  .footer-links.active ul,
+  .footer-legal.active ul,
+  .footer-contact.active .contact-content {
+    max-height: 500px; /* Altura máxima cuando está abierto */
+    padding: 0 1.2rem 1.2rem;
+  }
+
+  /* Contenido de contacto */
+  .contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Enlaces */
+  .footer-links a,
+  .footer-legal a {
+    padding: 0.7rem 0;
+    margin-bottom: 0;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: block;
+    width: 100%;
+  }
+
+  .footer-links a:last-child,
+  .footer-legal a:last-child {
+    border-bottom: none;
+  }
+
+  .footer-links a::before,
+  .footer-legal a::before {
+    content: '\f105';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 0.5rem;
+    opacity: 0.7;
+    display: inline-block;
+    position: static;
+    transform: none;
+  }
+
+  .footer-links a:hover,
+  .footer-legal a:hover {
+    transform: translateX(0);
+    padding-left: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+  }
+
+  /* Email de contacto */
+  .footer-email {
+    display: inline-block;
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+    margin: 1rem 0;
+    position: relative;
+    transition: var(--transition-fast);
+    padding: 0.5rem 1rem;
+    background: rgba(127, 90, 240, 0.1);
+    border-radius: 50px;
+  }
+
+  .footer-email:hover {
+    color: var(--accent-secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Redes sociales */
+  .social-links {
+    justify-content: center;
+    gap: 1rem;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .social-link {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+
+  /* Badges de tiendas - Optimizados */
+  .app-badges {
+    display: flex;
+    flex-direction: row; /* Mantener horizontal */
+    justify-content: center;
+    flex-wrap: wrap; /* Permitir ajuste si es necesario */
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .app-badge {
+    max-width: 140px;
+    flex: 0 0 auto;
+  }
+
+  .app-badge img {
+    width: 140px;
+    height: auto;
+  }
+
+  /* Footer bottom - Optimizado */
+  .footer-bottom {
+    display: flex;
+    flex-direction: row; /* Mantener en línea */
+    flex-wrap: wrap; /* Permitir ajuste si es necesario */
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    text-align: center;
+  }
+
+  .copyright {
+    padding-left: 0;
+    order: 1;
+    font-size: 0.85rem;
+    flex: 1 1 auto;
+    text-align: left;
+  }
+
+  .copyright::before {
+    display: inline-block;
+    position: static;
+    margin-right: 0.5rem;
+  }
+
+  .footer-badges {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    order: 2;
+    flex: 1 1 auto;
+  }
+
+  .badge {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  /* Partículas */
+  .footer-particle {
+    width: 4px;
+    height: 4px;
+    opacity: 0.1;
+  }
+  
+  /* Script para activar el acordeón */
+  .footer-script {
+    display: none;
+  }
+}
+
+/* Ajustes adicionales para pantallas medianas */
+@media (max-width: 576px) {
+  .footer {
+    padding: 3.5rem 0 1.5rem;
+  }
+
+  .footer-title {
+    font-size: 1.7rem;
+  }
+
+  .footer-description {
+    font-size: 0.95rem;
+  }
+
+  .footer-newsletter {
+    padding: 1.2rem;
+  }
+
+  .newsletter-form {
+    gap: 0.6rem;
+  }
+
+  .newsletter-form input {
+    flex: 1 1 100%; /* Tomar todo el ancho en pantallas muy pequeñas */
+  }
+
+  .newsletter-form button {
+    flex: 1 1 auto; /* Permitir crecer para ocupar el ancho */
+    width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .copyright {
+    text-align: center;
+    order: 2;
+    width: 100%;
+  }
+
+  .footer-badges {
+    justify-content: center;
+    order: 1;
+    width: 100%;
+  }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+  .footer {
+    padding: 3rem 0 1.5rem;
+  }
+
+  .footer-title {
+    font-size: 1.6rem;
+  }
+
+  .footer-description {
+    font-size: 0.9rem;
+  }
+
+  .footer h4 {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .social-links {
+    gap: 0.8rem;
+  }
+
+  .social-link {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  .app-badges {
+    gap: 0.8rem;
+  }
+
+  .app-badge {
+    max-width: 130px;
+  }
+
+  .app-badge img {
+    width: 130px;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.7rem;
+  }
+}
+
+/* Ajustes para pantallas extremadamente pequeñas */
+@media (max-width: 320px) {
+  .footer-title {
+    font-size: 1.5rem;
+  }
+
+  .footer h4 {
+    font-size: 0.95rem;
+    padding: 0.9rem;
+  }
+
+  .social-link {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .app-badge {
+    max-width: 120px;
+  }
+
+  .app-badge img {
+    width: 120px;
+  }
+
+  /* Mantener badges en horizontal incluso en pantallas muy pequeñas */
+  .footer-badges {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .badge {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.65rem;
+  }
+}
+
+/* Animación de entrada para elementos del footer */
+@keyframes footerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Aplicar animación cuando el footer entra en viewport */
+.footer.in-view .footer-main,
+.footer.in-view .footer-links,
+.footer.in-view .footer-legal,
+.footer.in-view .footer-contact {
+  animation: footerFadeIn 0.6s ease forwards;
+}
+
+.footer.in-view .footer-main {
+  animation-delay: 0.1s;
+}
+
+.footer.in-view .footer-links {
+  animation-delay: 0.2s;
+}
+
+.footer.in-view .footer-legal {
+  animation-delay: 0.3s;
+}
+
+.footer.in-view .footer-contact {
+  animation-delay: 0.4s;
+}
+
+.footer.in-view .footer-bottom {
+  animation: footerFadeIn 0.6s ease forwards;
+  animation-delay: 0.5s;
+}
+
+/* Añadir código JavaScript para el acordeón */
+.footer-script-content {
+  display: none;
+}
+
+/* Este contenido será inyectado por JavaScript */
+.footer-script-content::after {
+  content: "document.addEventListener('DOMContentLoaded', function() { const accordionHeaders = document.querySelectorAll('.footer-links h4, .footer-legal h4, .footer-contact h4'); accordionHeaders.forEach(header => { header.addEventListener('click', function() { const parent = this.parentElement; parent.classList.toggle('active'); }); }); });";
+} 
