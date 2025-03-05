@@ -2024,13 +2024,30 @@ document.addEventListener('DOMContentLoaded', () => {
   function initFooterFunctionality() {
     // Sistema de acordeón para el footer en móvil
     const accordionHeaders = document.querySelectorAll('.footer-links h4, .footer-legal h4, .footer-contact h4');
+    const isMobile = window.innerWidth <= 768;
     
-    accordionHeaders.forEach(header => {
-      header.addEventListener('click', function() {
-        const parent = this.parentElement;
-        parent.classList.toggle('active');
+    // Si estamos en móvil, inicializar el acordeón
+    if (isMobile) {
+      accordionHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          const parent = this.parentElement;
+          
+          // Si el elemento ya está activo, cerrarlo
+          if (parent.classList.contains('active')) {
+            parent.classList.remove('active');
+            return;
+          }
+          
+          // Cerrar todas las secciones activas
+          document.querySelectorAll('.footer-links.active, .footer-legal.active, .footer-contact.active').forEach(section => {
+            section.classList.remove('active');
+          });
+          
+          // Abrir la sección actual
+          parent.classList.add('active');
+        });
       });
-    });
+    }
     
     // Funcionalidad para el formulario de newsletter
     const newsletterForm = document.querySelector('.newsletter-form');
@@ -2038,38 +2055,32 @@ document.addEventListener('DOMContentLoaded', () => {
       newsletterForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Eliminar mensaje de éxito anterior si existe
-        const existingSuccess = this.querySelector('.newsletter-success');
-        if (existingSuccess) {
-          existingSuccess.remove();
+        const emailInput = this.querySelector('input[type="email"]');
+        const email = emailInput.value.trim();
+        
+        if (email) {
+          // Mostrar mensaje de éxito
+          const successMessage = this.parentNode.querySelector('.newsletter-success');
+          if (successMessage) {
+            successMessage.textContent = '¡Gracias por suscribirte!';
+            successMessage.classList.add('show');
+            
+            // Limpiar el formulario
+            emailInput.value = '';
+            
+            // Ocultar mensaje después de 3 segundos
+            setTimeout(() => {
+              successMessage.classList.remove('show');
+            }, 3000);
+          }
         }
-        
-        // Mostrar mensaje de éxito
-        const successMessage = document.createElement('div');
-        successMessage.className = 'newsletter-success';
-        successMessage.textContent = '¡Suscripción exitosa!';
-        
-        this.appendChild(successMessage);
-        setTimeout(() => {
-          successMessage.classList.add('show');
-        }, 10);
-        
-        // Ocultar mensaje después de 3 segundos
-        setTimeout(() => {
-          successMessage.classList.remove('show');
-          setTimeout(() => {
-            successMessage.remove();
-          }, 300);
-        }, 3000);
-        
-        // Limpiar el formulario
-        this.reset();
       });
     }
     
     // Detectar cuando el footer entra en el viewport para activar animaciones
     const footer = document.querySelector('.footer');
-    if (footer) {
+    
+    if (footer && window.IntersectionObserver) {
       const footerObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -2082,6 +2093,44 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       
       footerObserver.observe(footer);
+    } else if (footer) {
+      // Fallback para navegadores que no soportan IntersectionObserver
+      window.addEventListener('scroll', function checkFooterVisibility() {
+        const footerRect = footer.getBoundingClientRect();
+        
+        if (footerRect.top < window.innerHeight) {
+          footer.classList.add('in-view');
+          window.removeEventListener('scroll', checkFooterVisibility);
+        }
+      });
     }
+    
+    // Mejoras para enlaces y botones del footer
+    const footerLinks = document.querySelectorAll('.footer a:not(.social-link):not(.app-badge)');
+    
+    footerLinks.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        link.style.transform = 'translateX(5px)';
+        link.style.color = 'var(--accent-primary)';
+      });
+      
+      link.addEventListener('mouseleave', () => {
+        link.style.transform = '';
+        link.style.color = '';
+      });
+    });
+    
+    // Mejoras para redes sociales
+    const socialLinks = document.querySelectorAll('.social-link');
+    
+    socialLinks.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        link.style.transform = 'translateY(-3px)';
+      });
+      
+      link.addEventListener('mouseleave', () => {
+        link.style.transform = '';
+      });
+    });
   }
 });

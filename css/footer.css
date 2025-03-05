@@ -252,10 +252,41 @@
   transform: translateX(0);
 }
 
+/* Sección de contacto mejorada */
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-contact p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.footer-email {
+  display: inline-block;
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  position: relative;
+  transition: var(--transition-fast);
+  padding: 0.5rem 1rem;
+  background: rgba(127, 90, 240, 0.1);
+  border-radius: 50px;
+  width: fit-content;
+}
+
+.footer-email:hover {
+  color: var(--accent-secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
 .social-links {
   display: flex;
   gap: 1.2rem;
-  margin-top: 1.8rem;
+  margin-bottom: 1.8rem;
 }
 
 .social-link {
@@ -300,7 +331,7 @@
 .app-badges {
   display: flex;
   gap: 1.5rem;
-  margin-top: 1.2rem;
+  margin-top: 0.5rem;
 }
 
 .app-badge {

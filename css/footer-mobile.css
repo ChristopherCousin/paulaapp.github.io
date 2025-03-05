@@ -2,6 +2,7 @@
 @media (max-width: 768px) {
   .footer {
     padding: 4rem 0 2rem;
+    overflow: hidden;
   }
 
   /* Estructura del grid para móvil - Optimizada */
@@ -132,9 +133,13 @@
     transform: rotate(180deg);
   }
 
+  /* Arreglo para contenido de contacto - Faltaba estructura adecuada */
   .footer-links ul,
   .footer-legal ul,
-  .footer-contact .contact-content {
+  .footer-contact p,
+  .footer-contact .footer-email,
+  .footer-contact .social-links,
+  .footer-contact .app-badges {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease;
@@ -144,66 +149,34 @@
 
   .footer-links.active ul,
   .footer-legal.active ul,
-  .footer-contact.active .contact-content {
+  .footer-contact.active p,
+  .footer-contact.active .footer-email,
+  .footer-contact.active .social-links,
+  .footer-contact.active .app-badges {
     max-height: 500px; /* Altura máxima cuando está abierto */
-    padding: 0 1.2rem 1.2rem;
+    margin-bottom: 0.8rem;
   }
 
-  /* Contenido de contacto */
-  .contact-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Enlaces */
-  .footer-links a,
-  .footer-legal a {
-    padding: 0.7rem 0;
-    margin-bottom: 0;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    display: block;
-    width: 100%;
-  }
-
-  .footer-links a:last-child,
-  .footer-legal a:last-child {
-    border-bottom: none;
-  }
-
-  .footer-links a::before,
-  .footer-legal a::before {
-    content: '\f105';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    margin-right: 0.5rem;
-    opacity: 0.7;
-    display: inline-block;
-    position: static;
-    transform: none;
-  }
-
-  .footer-links a:hover,
-  .footer-legal a:hover {
-    transform: translateX(0);
-    padding-left: 0.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 4px;
+  /* Alinear correctamente los elementos de contacto */
+  .footer-contact p {
+    text-align: center;
+    margin-top: 1rem;
   }
 
   /* Email de contacto */
   .footer-email {
-    display: inline-block;
+    display: block;
     color: var(--accent-primary);
     text-decoration: none;
     font-weight: 500;
-    margin: 1rem 0;
+    text-align: center;
     position: relative;
     transition: var(--transition-fast);
     padding: 0.5rem 1rem;
     background: rgba(127, 90, 240, 0.1);
     border-radius: 50px;
+    margin: 0.8rem auto;
+    width: fit-content;
   }
 
   .footer-email:hover {
@@ -212,11 +185,12 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 
-  /* Redes sociales */
+  /* Redes sociales - Centradas */
   .social-links {
+    display: flex;
     justify-content: center;
     gap: 1rem;
-    margin: 0.5rem 0 1rem;
+    margin: 1rem auto;
   }
 
   .social-link {
@@ -225,14 +199,14 @@
     font-size: 1.1rem;
   }
 
-  /* Badges de tiendas - Optimizados */
+  /* Badges de tiendas - Optimizados y centrados */
   .app-badges {
     display: flex;
     flex-direction: row; /* Mantener horizontal */
     justify-content: center;
     flex-wrap: wrap; /* Permitir ajuste si es necesario */
     gap: 1rem;
-    margin: 1rem 0;
+    margin: 1rem auto;
   }
 
   .app-badge {
