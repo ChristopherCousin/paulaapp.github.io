@@ -112,12 +112,12 @@
     padding: 4.5rem 0;
   }
   
-  .store-badge {
-    width: 200px;
-  }
-  
   .app-stores {
+    max-width: 550px;
     gap: 1.5rem;
+  }
+  .store-badge {
+    width: 230px;
   }
 }
 
@@ -479,11 +479,12 @@
   }
   
   .app-stores {
-    gap: 1.25rem;
+    flex-direction: column;   /* Pasa los botones a columna */
+    max-width: 400px;         /* Reduce un poco el ancho máximo */
+    margin: 1.5rem auto;
   }
-  
   .store-badge {
-    width: 190px;
+    width: 220px;
   }
 }
 
@@ -746,7 +747,7 @@
   }
   
   .store-badge {
-    width: 180px;
+    width: 200px;
   }
   
   /* Ajustes para la sección de descarga */
@@ -762,7 +763,7 @@
   }
   
   .store-badge {
-    width: 170px;
+    width: 180px;
   }
 }
 
@@ -934,7 +935,7 @@
   }
   
   .store-badge {
-    width: 160px;
+    width: 180px;
   }
   
   /* Ajustes para la sección de descarga */

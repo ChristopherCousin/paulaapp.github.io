@@ -323,32 +323,36 @@ video.download-phone-screen {
 }
 
 .app-stores {
-  display: flex;
-  flex-direction: column;
+  display: flex;              /* Botones en línea */
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
-  margin: 1.5rem 0;
-  width: 100%;
+  gap: 2rem;                  /* Espacio horizontal entre los botones */
+  margin: 2rem auto;          /* Centrado y separación vertical */
+  max-width: 600px;           /* Limita el ancho para no ocupar todo el viewport */
 }
 
 .store-button {
-  display: block;
-  transition: transform 0.3s ease;
-  background: transparent;
-  border: none;
-  padding: 0;
+  display: inline-flex;       /* Permite aplicar efectos de hover con más control */
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .store-button:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   transform: translateY(-3px);
 }
 
 .store-badge {
-  display: block;
-  width: 220px;
+  width: 250px;               /* Tamaño base en escritorio */
   height: auto;
+  transition: transform 0.3s ease;
 }
+
 
 .store-text {
   display: flex;
