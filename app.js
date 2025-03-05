@@ -487,7 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ease: "power3.out"
     });
     
-    // Animación para los números en las estadísticas
+    // Animación mejorada para los números en las estadísticas
     const statNumbers = document.querySelectorAll('.stat-item h3');
     
     statNumbers.forEach(stat => {
@@ -503,18 +503,24 @@ document.addEventListener('DOMContentLoaded', () => {
       if (hasStar) suffix = '★';
       if (hasPlus) suffix = '+';
       
+      // Valores iniciales más realistas para la animación
+      let startValue = 0;
+      if (hasPercentage) startValue = Math.max(0, numericValue - 50);
+      if (hasStar) startValue = Math.max(0, numericValue - 2);
+      if (hasPlus) startValue = Math.max(0, numericValue / 5);
+      
       gsap.fromTo(stat, 
-        { innerText: '0' + suffix },
+        { innerText: startValue + suffix },
         {
           scrollTrigger: {
             trigger: ".testimonial-stats",
-            start: "top 80%",
+            start: "top 85%",
             toggleActions: "play none none reverse"
           },
           innerText: value,
-          duration: 2,
+          duration: 2.5,
           ease: "power2.out",
-          snap: { innerText: 1 },
+          snap: { innerText: hasPercentage || hasPlus ? 1 : 0.1 },
           onUpdate: function() {
             if (hasPercentage) {
               stat.innerText = Math.round(this.targets()[0]._gsap.innerText) + '%';
@@ -526,6 +532,19 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       );
+      
+      // Añadir efecto de brillo al completar la animación
+      gsap.to(stat, {
+        scrollTrigger: {
+          trigger: ".testimonial-stats",
+          start: "top 85%"
+        },
+        textShadow: "0 0 10px rgba(127, 90, 240, 0.7)",
+        delay: 2.5,
+        duration: 0.5,
+        yoyo: true,
+        repeat: 1
+      });
     });
   }
   
@@ -1839,24 +1858,58 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     
-    // Función para desplazarse a un testimonio específico
+    // Función para desplazarse a un testimonio específico con animación mejorada
     function scrollToTestimonial(index) {
       if (index < 0) index = 0;
       if (index >= testimonialCards.length) index = testimonialCards.length - 1;
       
+      // Si estamos en el mismo índice, no hacer nada
+      if (currentIndex === index) return;
+      
+      const previousIndex = currentIndex;
       currentIndex = index;
       updateIndicators(currentIndex);
       
-      // Solo aplicar scroll en móvil
+      // Aplicar animación de transición
       if (window.innerWidth <= 768) {
+        // Animación para móviles
+        testimonialCards.forEach((card, idx) => {
+          // Ocultar todas las tarjetas excepto la actual
+          if (idx !== index) {
+            gsap.to(card, {
+              scale: 0.95,
+              opacity: 0.5,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          } else {
+            gsap.to(card, {
+              scale: 1,
+              opacity: 1,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          }
+        });
+        
         const card = testimonialCards[index];
         if (card) {
-          const scrollLeft = card.offsetLeft - testimonialGrid.offsetLeft - 16; // 16px es el padding
+          const scrollLeft = card.offsetLeft - testimonialGrid.offsetLeft - 16;
           testimonialGrid.scrollTo({
             left: scrollLeft,
             behavior: 'smooth'
           });
         }
+      } else {
+        // Para desktop, animar la opacidad
+        testimonialCards.forEach((card, idx) => {
+          gsap.to(card, {
+            opacity: idx === index ? 1 : 0.7,
+            scale: idx === index ? 1 : 0.98,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
       }
     }
     
@@ -1873,15 +1926,22 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     
-    // Event listeners para los indicadores
+    // Event listeners para los indicadores con efecto de clic mejorado
     indicators.forEach(indicator => {
       indicator.addEventListener('click', () => {
         const index = parseInt(indicator.getAttribute('data-index'));
+        
+        // Efecto visual al hacer clic
+        gsap.fromTo(indicator, 
+          { scale: 0.8 },
+          { scale: 1, duration: 0.3, ease: "back.out(2)" }
+        );
+        
         scrollToTestimonial(index);
       });
     });
     
-    // Soporte para deslizamiento táctil
+    // Soporte para deslizamiento táctil mejorado
     testimonialGrid.addEventListener('touchstart', (e) => {
       startX = e.touches[0].clientX;
       initialPosition = testimonialGrid.scrollLeft;
@@ -1905,10 +1965,10 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const diff = startX - moveX;
       
-      // Determinar la dirección del deslizamiento
-      if (diff > 50) { // Deslizamiento a la izquierda
+      // Determinar la dirección del deslizamiento con umbral reducido para móviles
+      if (diff > 40) { // Deslizamiento a la izquierda (valor reducido para mayor sensibilidad)
         scrollToTestimonial(currentIndex + 1);
-      } else if (diff < -50) { // Deslizamiento a la derecha
+      } else if (diff < -40) { // Deslizamiento a la derecha
         scrollToTestimonial(currentIndex - 1);
       }
       
@@ -1942,6 +2002,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
       }
     }, { passive: true });
+    
+    // Inicializar con efecto de entrada para los testimonios
+    testimonialCards.forEach((card, index) => {
+      gsap.set(card, {
+        opacity: index === 0 ? 1 : 0.7,
+        scale: index === 0 ? 1 : 0.98
+      });
+    });
     
     // Inicializar con el primer testimonio
     scrollToTestimonial(0);

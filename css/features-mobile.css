@@ -1,0 +1,389 @@
+/* Estilos móviles para la sección Features */
+
+/* ==== Estilos para tablet ==== */
+@media (max-width: 992px) {
+  .features-orbit-container {
+    height: 500px;
+  }
+  
+  .orbit-ring-1 {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .orbit-ring-2 {
+    width: 450px;
+    height: 450px;
+  }
+  
+  .orbit-feature {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .orbit-feature-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* ==== Estilos para móvil ==== */
+@media (max-width: 768px) {
+  /* Optimizaciones para pantallas táctiles */
+  .orbit-feature {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* Eliminar resaltado táctil por defecto */
+    touch-action: manipulation; /* Mejora la respuesta táctil */
+    user-select: none; /* Evita selección de texto */
+    -webkit-user-select: none;
+    /* Añadir borde más visible para indicar interactividad */
+    border: 2px solid rgba(127, 90, 240, 0.4);
+    /* Añadir sombra para dar sensación de elemento tocable */
+    box-shadow: 0 4px 12px rgba(127, 90, 240, 0.2);
+  }
+  
+  /* Indicador visual para mostrar que las características son interactivas */
+  .features-orbit-container::after {
+    content: 'Toca para ver detalles';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(127, 90, 240, 0.2);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    animation: fadeInOut 3s infinite;
+    pointer-events: none;
+    z-index: 100;
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  /* Estado activo más prominente */
+  .orbit-feature.active {
+    background: rgba(36, 38, 41, 0.95);
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.4);
+    border: 1px solid rgba(127, 90, 240, 0.3);
+  }
+  
+  /* Pulse animation sutil para indicar interactividad */
+  .orbit-feature::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(127, 90, 240, 0.3);
+    opacity: 0;
+    animation: pulseBorder 2s infinite;
+    pointer-events: none;
+  }
+  
+  @keyframes pulseBorder {
+    0% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      transform: scale(1.05);
+      opacity: 0;
+    }
+  }
+  
+  /* Feedback visual al tocar */
+  .orbit-feature:active {
+    background: rgba(36, 38, 41, 0.95);
+  }
+}
+
+/* ==== Estilos para pantallas pequeñas ==== */
+@media (max-width: 576px) {
+  .features-orbit-container {
+    height: 400px;
+    transform: scale(0.85);
+    margin-top: -20px;
+    margin-bottom: -20px;
+  }
+  
+  .orbit-center {
+    width: 110px; /* Centro ligeramente más pequeño */
+    height: 110px;
+  }
+  
+  .paula-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  
+  .orbit-center h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .orbit-center p {
+    font-size: 0.7rem;
+  }
+  
+  .orbit-ring-1 {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .orbit-ring-2 {
+    width: 340px;
+    height: 340px;
+  }
+  
+  .orbit-feature {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .orbit-feature-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 0.2rem;
+  }
+  
+  .orbit-feature-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .orbit-feature h3 {
+    font-size: 0.7rem;
+  }
+  
+  .orbit-feature-detail {
+    width: 160px;
+    padding: 0.7rem;
+  }
+  
+  .orbit-feature-detail p {
+    font-size: 0.7rem;
+  }
+  
+  .feature-detail-container {
+    margin-top: 1rem;
+  }
+  
+  .feature-detail {
+    padding: 1rem;
+  }
+  
+  .feature-detail h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-detail p {
+    font-size: 0.8rem;
+  }
+  
+  /* Ajustar posiciones de las características en la órbita */
+  .orbit-feature-1 {
+    top: 50%;
+    left: calc(50% - 120px);
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .orbit-feature-2 {
+    top: calc(50% - 120px);
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .orbit-feature-3 {
+    top: 50%;
+    left: calc(50% + 120px);
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .orbit-feature-4 {
+    top: calc(50% + 120px);
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  /* Reducir tamaño de las partículas */
+  .orbit-particle {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+/* ==== Estilos para pantallas muy pequeñas ==== */
+@media (max-width: 375px) {
+  /* Ajustes adicionales para pantallas muy pequeñas */
+  .features-orbit-container {
+    transform: scale(0.75);
+    height: 350px;
+    margin-top: -30px;
+    margin-bottom: -30px;
+  }
+  
+  .orbit-ring-1 {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .orbit-ring-2 {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .orbit-feature {
+    width: 85px;
+    height: 85px;
+  }
+  
+  .orbit-feature-1 {
+    top: 50%;
+    left: calc(50% - 110px);
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .orbit-feature-2 {
+    top: calc(50% - 110px);
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .orbit-feature-3 {
+    top: 50%;
+    left: calc(50% + 110px);
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .orbit-feature-4 {
+    top: calc(50% + 110px);
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .feature-detail {
+    padding: 0.8rem;
+  }
+  
+  .feature-detail h3 {
+    font-size: 1rem;
+  }
+  
+  .feature-detail p {
+    font-size: 0.7rem;
+  }
+  
+  .orbit-center {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 320px) {
+  /* Ajustes para la sección de características en pantallas extremadamente pequeñas */
+  .features-orbit-container {
+    transform: scale(0.65);
+    height: 320px;
+    margin-top: -40px;
+    margin-bottom: -40px;
+  }
+  
+  .orbit-center {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .paula-avatar {
+    width: 35px;
+    height: 35px;
+    font-size: 1.3rem;
+  }
+  
+  .orbit-ring-1 {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .orbit-ring-2 {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .orbit-feature {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .orbit-feature-1 {
+    top: 50%;
+    left: calc(50% - 100px);
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .orbit-feature-2 {
+    top: calc(50% - 100px);
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .orbit-feature-3 {
+    top: 50%;
+    left: calc(50% + 100px);
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .orbit-feature-4 {
+    top: calc(50% + 100px);
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .orbit-feature-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .orbit-feature-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .orbit-feature h3 {
+    font-size: 0.6rem;
+  }
+  
+  .feature-detail {
+    padding: 0.7rem;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  
+  .feature-detail h3 {
+    font-size: 0.9rem;
+  }
+  
+  .feature-detail p {
+    font-size: 0.65rem;
+  }
+  
+  /* Hacer el borde más visible para compensar */
+  .orbit-feature {
+    border: 2px solid rgba(127, 90, 240, 0.6);
+  }
+} 
