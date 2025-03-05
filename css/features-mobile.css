@@ -31,15 +31,13 @@
 @media (max-width: 768px) {
   /* Optimizaciones para pantallas táctiles */
   .orbit-feature {
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: background-color 0.3s ease;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent; /* Eliminar resaltado táctil por defecto */
-    touch-action: manipulation; /* Mejora la respuesta táctil */
-    user-select: none; /* Evita selección de texto */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
     -webkit-user-select: none;
-    /* Añadir borde más visible para indicar interactividad */
     border: 2px solid rgba(127, 90, 240, 0.4);
-    /* Añadir sombra para dar sensación de elemento tocable */
     box-shadow: 0 4px 12px rgba(127, 90, 240, 0.2);
   }
   
@@ -71,41 +69,21 @@
     }
   }
   
-  /* Estado activo más prominente */
+  /* Estado activo más prominente sin movimiento */
   .orbit-feature.active {
     background: rgba(36, 38, 41, 0.95);
     box-shadow: 0 0 20px rgba(127, 90, 240, 0.4);
     border: 1px solid rgba(127, 90, 240, 0.3);
+    /* Eliminamos cualquier transformación */
+    transform: none !important;
   }
   
-  /* Pulse animation sutil para indicar interactividad */
+  /* Eliminamos la animación de pulso que podría causar movimiento */
   .orbit-feature::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-shadow: 0 0 0 3px rgba(127, 90, 240, 0.3);
-    opacity: 0;
-    animation: pulseBorder 2s infinite;
-    pointer-events: none;
+    display: none;
   }
   
-  @keyframes pulseBorder {
-    0% {
-      transform: scale(1);
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.4;
-    }
-    100% {
-      transform: scale(1.05);
-      opacity: 0;
-    }
-  }
-  
-  /* Feedback visual al tocar */
+  /* Feedback visual al tocar sin movimiento */
   .orbit-feature:active {
     background: rgba(36, 38, 41, 0.95);
   }
@@ -200,24 +178,28 @@
   .orbit-feature-1 {
     top: 50%;
     left: calc(50% - 120px);
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%);
   }
   
   .orbit-feature-2 {
     top: calc(50% - 120px);
     left: 50%;
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%);
   }
   
   .orbit-feature-3 {
     top: 50%;
     left: calc(50% + 120px);
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%);
   }
   
   .orbit-feature-4 {
     top: calc(50% + 120px);
     left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .orbit-feature.active {
     transform: translate(-50%, -50%) !important;
   }
   
@@ -256,24 +238,28 @@
   .orbit-feature-1 {
     top: 50%;
     left: calc(50% - 110px);
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%);
   }
   
   .orbit-feature-2 {
     top: calc(50% - 110px);
     left: 50%;
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%);
   }
   
   .orbit-feature-3 {
     top: 50%;
     left: calc(50% + 110px);
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%);
   }
   
   .orbit-feature-4 {
     top: calc(50% + 110px);
     left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .orbit-feature.active {
     transform: translate(-50%, -50%) !important;
   }
   
@@ -333,24 +319,28 @@
   .orbit-feature-1 {
     top: 50%;
     left: calc(50% - 100px);
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%);
   }
   
   .orbit-feature-2 {
     top: calc(50% - 100px);
     left: 50%;
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%);
   }
   
   .orbit-feature-3 {
     top: 50%;
     left: calc(50% + 100px);
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%);
   }
   
   .orbit-feature-4 {
     top: calc(50% + 100px);
     left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .orbit-feature.active {
     transform: translate(-50%, -50%) !important;
   }
   

@@ -151,16 +151,24 @@
 }
 
 .orbit-feature.active {
-  animation: pulse 2s infinite ease-in-out;
   background: rgba(36, 38, 41, 0.95);
   box-shadow: 0 10px 30px rgba(127, 90, 240, 0.3);
 }
 
 .orbit-feature.active .orbit-feature-icon {
-  transform: scale(1.2);
   filter: drop-shadow(0 0 10px rgba(127, 90, 240, 0.5));
 }
 
 .orbit-feature.active h3 {
   color: var(--accent-primary);
+}
+
+@media (max-width: 768px) {
+  .orbit-feature.active {
+    animation: none;
+  }
+  
+  .orbit-feature.active .orbit-feature-icon {
+    transform: none;
+  }
 } 
