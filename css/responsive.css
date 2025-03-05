@@ -106,6 +106,19 @@
     margin-top: 3rem;
     max-width: 500px;
   }
+  
+  /* Ajustes para la sección de descarga */
+  #download {
+    padding: 4.5rem 0;
+  }
+  
+  .store-badge {
+    width: 200px;
+  }
+  
+  .app-stores {
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -425,6 +438,53 @@
     width: 130px;
     height: 130px;
   }
+  
+  /* Ajustes para la sección de descarga */
+  #download {
+    padding: 4rem 0;
+  }
+  
+  .download-mockup-wrapper {
+    margin-bottom: 2rem;
+  }
+  
+  .download-phone {
+    max-width: 220px;
+  }
+  
+  .phone-frame {
+    border-width: 8px;
+    border-radius: 28px;
+  }
+  
+  .download-phone-screen {
+    border-radius: 20px;
+  }
+  
+  .download-feature-item {
+    padding: 1rem;
+  }
+  
+  .download-feature-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .download-feature-text h4 {
+    font-size: 1rem;
+  }
+  
+  .download-feature-text p {
+    font-size: 0.85rem;
+  }
+  
+  .app-stores {
+    gap: 1.25rem;
+  }
+  
+  .store-badge {
+    width: 190px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -680,6 +740,30 @@
   }
   
   /* Eliminar ajustes de los picos para pantallas pequeñas */
+  
+  .app-stores {
+    gap: 1rem;
+  }
+  
+  .store-badge {
+    width: 180px;
+  }
+  
+  /* Ajustes para la sección de descarga */
+  .download-badges {
+    justify-content: center;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .app-stores {
+    gap: 1rem;
+  }
+  
+  .store-badge {
+    width: 170px;
+  }
 }
 
 @media (max-width: 375px) {
@@ -843,9 +927,23 @@
   }
   
   /* Eliminar ajustes de los picos para pantallas muy pequeñas */
+  
+  .app-stores {
+    gap: 1rem;
+    flex-direction: column;
+  }
+  
+  .store-badge {
+    width: 160px;
+  }
+  
+  /* Ajustes para la sección de descarga */
+  .download-badges {
+    justify-content: center;
+  }
+  
 }
 
-/* Para dispositivos extremadamente pequeños */
 @media (max-width: 320px) {
   .logo-text {
     font-size: 1rem;
@@ -1034,5 +1132,33 @@
   
   .section-header {
     margin-bottom: 1.5rem;
+  }
+  
+  .app-stores {
+    gap: 0.75rem;
+    flex-direction: column;
+  }
+  
+  .store-button {
+    width: 100px;
+  }
+  
+  .store-badge {
+    width: 150px;
+  }
+}
+
+@media (min-width: 992px) {
+  /* Estructura del contenido de descarga */
+  .download-content {
+    grid-template-columns: 0.7fr 1.3fr;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* Estructura del contenido de descarga */
+  .download-content {
+    grid-template-columns: 1fr 1fr;
   }
 } 
