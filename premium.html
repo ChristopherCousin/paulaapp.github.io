@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paula Premium - Suscripción</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/premium.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="assets/paulaapp.svg" alt="Paula App">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container premium-container">
+            <h1>Paula Premium</h1>
+            <div class="premium-content">
+                <div class="premium-benefits">
+                    <h2>Beneficios de la suscripción</h2>
+                    <ul>
+                        <li>Acceso ilimitado a todas las funciones</li>
+                        <li>Sin publicidad</li>
+                        <li>Soporte prioritario</li>
+                        <li>Nuevas características antes que nadie</li>
+                    </ul>
+                </div>
+                <div class="premium-pricing">
+                    <div class="price-card">
+                        <h3>Plan Mensual</h3>
+                        <div class="price">€9.99<span>/mes</span></div>
+                        <button id="checkout-button" class="checkout-button">Suscribirse Ahora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Paula App. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="/terminos.html">Términos de Servicio</a>
+                <a href="/privacidad.html">Política de Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="premium.js"></script>
+</body>
+</html> 

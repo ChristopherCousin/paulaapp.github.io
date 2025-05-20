@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Pago Exitoso! - Paula Premium</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .success-container {
+            text-align: center;
+            padding: 50px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .success-icon {
+            font-size: 64px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .success-message {
+            margin-bottom: 30px;
+        }
+        
+        .success-message h1 {
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        .success-message p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .back-to-app {
+            display: inline-block;
+            background-color: #FF5722;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-app:hover {
+            background-color: #E64A19;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="assets/paulaapp.svg" alt="Paula App">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="success-container">
+            <div class="success-icon">✓</div>
+            <div class="success-message">
+                <h1>¡Pago Completado con Éxito!</h1>
+                <p>Tu suscripción a Paula Premium ha sido activada correctamente.</p>
+                <p>Ya puedes disfrutar de todas las ventajas premium en la aplicación.</p>
+            </div>
+            <a href="paulaapp://" class="back-to-app">Volver a la Aplicación</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Paula App. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="/terminos.html">Términos de Servicio</a>
+                <a href="/privacidad.html">Política de Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Opcionalmente, para redirigir automáticamente a la app después de unos segundos
+        setTimeout(function() {
+            window.location.href = 'paulaapp://';
+        }, 5000); // Redirige después de 5 segundos
+    </script>
+</body>
+</html> 
