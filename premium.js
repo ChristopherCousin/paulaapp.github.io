@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Configurar Stripe con la clave pública
-    const stripe = Stripe('pk_live_51RQqOkD34bXKT83dNmDTwDYqSEaUe053RodiWNvJ4WJiWhW8q7XZH46pgpc4KuAlpAYf1Zxyp4dOB40Cqs1CWpEF00oS8s5yTc');
+    const stripe = Stripe('pk_test_51RQqOsRbDxXsNOiWTFddlkCyi89xDlxeORRpHbn60TfbuR9Ui1UuZ8kRdtgSJNMACaJeyRVtFptI6xz26eK7ZIpj006LaOFg1X');
     
     // Función para obtener parámetros de la URL
     function getUrlParameter(name) {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({
                 user_id: userId,
-                price_id: 'price_1RQrm5D34bXKT83d4JPN1JIt', // ID del precio del plan mensual
+                price_id: 'price_1RQqhHRbDxXsNOiWQF3F7xGj', // ID del precio del plan mensual
                 success_url: 'https://paulaapp.com/success',
                 cancel_url: 'https://paulaapp.com/premium'
             })
