@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Configurar Stripe con la clave pública
-    const stripe = Stripe('pk_test_51RQqOsRbDxXsNOiWTFddlkCyi89xDlxeORRpHbn60TfbuR9Ui1UuZ8kRdtgSJNMACaJeyRVtFptI6xz26eK7ZIpj006LaOFg1X');
+    const stripe = Stripe('pk_live_51RQqOkD34bXKT83dNmDTwDYqSEaUe053RodiWNvJ4WJiWhW8q7XZH46pgpc4KuAlpAYf1Zxyp4dOB40Cqs1CWpEF00oS8s5yTc');
     
     // Función para obtener parámetros de la URL
     function getUrlParameter(name) {
