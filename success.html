@@ -2,92 +2,343 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>¡Pago Exitoso! - Paula Premium</title>
-    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .success-container {
             text-align: center;
             padding: 50px 20px;
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 800px;
+            margin: 120px auto 80px;
+            position: relative;
+            z-index: 1;
         }
         
         .success-icon {
-            font-size: 64px;
-            color: #4CAF50;
-            margin-bottom: 20px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--accent-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(44, 182, 125, 0.4);
+        }
+        
+        .success-icon i {
+            font-size: 50px;
+            color: white;
+        }
+        
+        .success-glow {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(44, 182, 125, 0.6) 0%, rgba(44, 182, 125, 0.2) 50%, transparent 70%);
+            opacity: 0.8;
+            animation: pulse 2s infinite;
+            border-radius: 50%;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
         }
         
         .success-message {
+            background: rgba(36, 38, 41, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: var(--shadow-soft);
             margin-bottom: 30px;
         }
         
         .success-message h1 {
             margin-bottom: 20px;
-            color: #4CAF50;
+            font-size: 2.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
         }
         
         .success-message p {
-            font-size: 18px;
+            font-size: 1.2rem;
             line-height: 1.6;
             margin-bottom: 15px;
+            color: var(--text-secondary);
         }
         
-        .back-to-app {
-            display: inline-block;
-            background-color: #FF5722;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s;
+        .instructions {
+            background: rgba(36, 38, 41, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: var(--shadow-soft);
         }
         
-        .back-to-app:hover {
-            background-color: #E64A19;
+        .instructions h3 {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .instructions h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 3px;
+        }
+        
+        .instructions ol {
+            padding-left: 25px;
+        }
+        
+        .instructions li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .success-container {
+                margin: 100px auto 60px;
+                padding: 0 1.5rem;
+            }
+            
+            .success-message h1 {
+                font-size: 2rem;
+            }
+            
+            .success-icon {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .success-icon i {
+                font-size: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .success-container {
+                margin: 90px auto 40px;
+            }
+            
+            .success-message,
+            .instructions {
+                padding: 1.5rem;
+            }
+            
+            .success-message h1 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="/" class="logo">
-                <img src="assets/paulaapp.svg" alt="Paula App">
-            </a>
+    <!-- Fondo neuronal animado -->
+    <div class="neural-background">
+        <canvas id="neuralCanvas"></canvas>
+    </div>
+    
+    <!-- Partículas flotantes globales -->
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
+    <header class="header">
+        <div class="header-backdrop"></div>
+        <nav class="container nav">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <span class="logo-letter">P</span>
+                    <div class="logo-glow"></div>
+                </div>
+                <a href="index.html" class="logo-text">
+                    <span class="logo-text-letter">P</span>
+                    <span class="logo-text-letter">A</span>
+                    <span class="logo-text-letter">U</span>
+                    <span class="logo-text-letter">L</span>
+                    <span class="logo-text-letter">A</span>
+                </a>
+                <div class="logo-badge">IA</div>
+            </div>
+        </nav>
+        
+        <div class="header-particles">
+            <div class="header-particle"></div>
+            <div class="header-particle"></div>
+            <div class="header-particle"></div>
         </div>
     </header>
 
     <main>
         <div class="success-container">
-            <div class="success-icon">✓</div>
+            <div class="success-icon">
+                <div class="success-glow"></div>
+                <i class="fas fa-check"></i>
+            </div>
             <div class="success-message">
                 <h1>¡Pago Completado con Éxito!</h1>
                 <p>Tu suscripción a Paula Premium ha sido activada correctamente.</p>
                 <p>Ya puedes disfrutar de todas las ventajas premium en la aplicación.</p>
             </div>
-            <a href="paulaapp://" class="back-to-app">Volver a la Aplicación</a>
+            <div class="instructions">
+                <h3>¿Qué hacer ahora?</h3>
+                <ol>
+                    <li>Cierra esta ventana del navegador</li>
+                    <li>Vuelve a la aplicación Paula</li>
+                    <li>Si ya tenías la aplicación abierta, puede que necesites cerrarla y abrirla de nuevo para ver los cambios</li>
+                </ol>
+            </div>
         </div>
     </main>
 
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Paula App. Todos los derechos reservados.</p>
-            <div class="footer-links">
-                <a href="/terminos.html">Términos de Servicio</a>
-                <a href="/privacidad.html">Política de Privacidad</a>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-container">
+                        <div class="logo-circle">
+                            <span class="logo-letter">P</span>
+                        </div>
+                        <span class="logo-text">PAULA</span>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="/terminos.html">Términos de Servicio</a></li>
+                            <li><a href="/privacidad.html">Política de Privacidad</a></li>
+                            <li><a href="/cookies.html">Política de Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 Paula App. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Opcionalmente, para redirigir automáticamente a la app después de unos segundos
-        setTimeout(function() {
-            window.location.href = 'paulaapp://';
-        }, 5000); // Redirige después de 5 segundos
+        // Inicialización del canvas neuronal para el fondo
+        document.addEventListener('DOMContentLoaded', function() {
+            const neuralCanvas = document.getElementById('neuralCanvas');
+            if (neuralCanvas) {
+                const ctx = neuralCanvas.getContext('2d');
+                neuralCanvas.width = window.innerWidth;
+                neuralCanvas.height = window.innerHeight;
+
+                // Configuración
+                const neurons = [];
+                const neuronCount = 150;
+                const neuronSize = 1;
+                const connectionDistance = 150;
+                const connectionOpacity = 0.15;
+
+                // Inicializar neuronas
+                for (let i = 0; i < neuronCount; i++) {
+                    neurons.push({
+                        x: Math.random() * neuralCanvas.width,
+                        y: Math.random() * neuralCanvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5
+                    });
+                }
+
+                // Función para dibujar el fondo neural
+                function drawNeuralBackground() {
+                    ctx.clearRect(0, 0, neuralCanvas.width, neuralCanvas.height);
+
+                    // Actualizar posiciones
+                    neurons.forEach(neuron => {
+                        neuron.x += neuron.vx;
+                        neuron.y += neuron.vy;
+
+                        // Rebote en los bordes
+                        if (neuron.x < 0 || neuron.x > neuralCanvas.width) neuron.vx *= -1;
+                        if (neuron.y < 0 || neuron.y > neuralCanvas.height) neuron.vy *= -1;
+
+                        // Dibujar neurona
+                        ctx.beginPath();
+                        ctx.arc(neuron.x, neuron.y, neuronSize, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(127, 90, 240, 0.6)';
+                        ctx.fill();
+                    });
+
+                    // Dibujar conexiones
+                    for (let i = 0; i < neurons.length; i++) {
+                        for (let j = i + 1; j < neurons.length; j++) {
+                            const dx = neurons[i].x - neurons[j].x;
+                            const dy = neurons[i].y - neurons[j].y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+
+                            if (distance < connectionDistance) {
+                                ctx.beginPath();
+                                ctx.moveTo(neurons[i].x, neurons[i].y);
+                                ctx.lineTo(neurons[j].x, neurons[j].y);
+                                const opacity = connectionOpacity * (1 - distance / connectionDistance);
+                                ctx.strokeStyle = `rgba(127, 90, 240, ${opacity})`;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+
+                    requestAnimationFrame(drawNeuralBackground);
+                }
+
+                // Iniciar animación
+                drawNeuralBackground();
+
+                // Ajustar tamaño del canvas cuando cambia el tamaño de la ventana
+                window.addEventListener('resize', () => {
+                    neuralCanvas.width = window.innerWidth;
+                    neuralCanvas.height = window.innerHeight;
+                });
+            }
+        });
     </script>
 </body>
 </html> 

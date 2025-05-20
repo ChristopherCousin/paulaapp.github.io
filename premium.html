@@ -2,56 +2,131 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Paula Premium - Suscripción</title>
-    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/premium.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="/" class="logo">
-                <img src="assets/paulaapp.svg" alt="Paula App">
-            </a>
+    <!-- Fondo neuronal animado -->
+    <div class="neural-background">
+        <canvas id="neuralCanvas"></canvas>
+    </div>
+    
+    <!-- Partículas flotantes globales -->
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
+    <header class="header">
+        <div class="header-backdrop"></div>
+        <nav class="container nav">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <span class="logo-letter">P</span>
+                    <div class="logo-glow"></div>
+                </div>
+                <a href="index.html" class="logo-text">
+                    <span class="logo-text-letter">P</span>
+                    <span class="logo-text-letter">A</span>
+                    <span class="logo-text-letter">U</span>
+                    <span class="logo-text-letter">L</span>
+                    <span class="logo-text-letter">A</span>
+                </a>
+                <div class="logo-badge">IA</div>
+            </div>
+        </nav>
+        
+        <div class="header-particles">
+            <div class="header-particle"></div>
+            <div class="header-particle"></div>
+            <div class="header-particle"></div>
         </div>
     </header>
 
     <main>
-        <div class="container premium-container">
-            <h1>Paula Premium</h1>
+        <div class="premium-container">
+            <h1>Paula <span class="gradient-text">Premium</span></h1>
             <div class="premium-content">
+                <!-- Partículas específicas de la sección premium -->
+                <div class="premium-particles">
+                    <div class="premium-particle"></div>
+                    <div class="premium-particle"></div>
+                    <div class="premium-particle"></div>
+                    <div class="premium-particle"></div>
+                </div>
+                
                 <div class="premium-benefits">
-                    <h2>Beneficios de la suscripción</h2>
+                    <h2>Beneficios exclusivos</h2>
                     <ul>
-                        <li>Acceso ilimitado a todas las funciones</li>
-                        <li>Sin publicidad</li>
-                        <li>Soporte prioritario</li>
+                        <li>Acceso ilimitado a todas las funciones de IA avanzada</li>
+                        <li>Conversaciones extendidas con mayor profundidad y contexto</li>
+                        <li>Sin publicidad ni interrupciones</li>
+                        <li>Soporte prioritario personalizado</li>
                         <li>Nuevas características antes que nadie</li>
+                        <li>Herramientas de seguimiento de progreso emocional</li>
                     </ul>
                 </div>
+                
                 <div class="premium-pricing">
                     <div class="price-card">
                         <h3>Plan Mensual</h3>
                         <div class="price">€9.99<span>/mes</span></div>
-                        <button id="checkout-button" class="checkout-button">Suscribirse Ahora</button>
+                        <div class="price-features">
+                            Sin compromiso de permanencia. Cancela cuando quieras.
+                        </div>
+                        <button id="checkout-button" class="checkout-button">
+                            <i class="fas fa-gem"></i>
+                            Activar Premium
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Paula App. Todos los derechos reservados.</p>
-            <div class="footer-links">
-                <a href="/terminos.html">Términos de Servicio</a>
-                <a href="/privacidad.html">Política de Privacidad</a>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-container">
+                        <div class="logo-circle">
+                            <span class="logo-letter">P</span>
+                        </div>
+                        <span class="logo-text">PAULA</span>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="/terminos.html">Términos de Servicio</a></li>
+                            <li><a href="/privacidad.html">Política de Privacidad</a></li>
+                            <li><a href="/cookies.html">Política de Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 Paula App. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
+    <script src="app.js"></script>
     <script src="premium.js"></script>
 </body>
 </html> 
