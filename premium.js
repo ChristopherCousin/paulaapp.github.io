@@ -36,8 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({
                 user_id: userId,
-                success_url: 'https://paulaapp.github.io/success',
-                cancel_url: 'https://paulaapp.github.io/profile'
+                price_id: 'price_1RQrm5D34bXKT83d4JPN1JIt', // ID del precio del plan mensual
+                success_url: 'https://paulaapp.com/success',
+                cancel_url: 'https://paulaapp.com/premium'
             })
         })
         .then(function(response) {
