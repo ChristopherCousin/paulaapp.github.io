@@ -12,6 +12,7 @@
 @import 'footer.css';
 @import 'animations.css';
 @import 'responsive.css';
+@import 'legal.css';
 
 /* Prevenir scroll horizontal en móviles */
 html, body {

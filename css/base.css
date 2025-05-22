@@ -241,7 +241,8 @@ h3 {
 .particle:nth-child(11) { top: 15%; left: 45%; animation-delay: 10s; }
 .particle:nth-child(12) { top: 65%; left: 35%; animation-delay: 11s; }
 
-/* Legal pages */
+/* Legal pages - Comentado porque ahora se usa legal.css */
+/* 
 .legal-content {
   max-width: 800px;
   margin: 6rem auto;
@@ -308,3 +309,4 @@ th, td {
 th {
   background: rgba(255, 255, 255, 0.05);
 } 
+*/ 

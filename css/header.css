@@ -262,12 +262,53 @@
   z-index: -1;
 }
 
+/* Efecto de brillo para el botón */
+.cta-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.5s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .cta-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.9rem;
   transition: transform 0.3s ease;
+}
+
+/* Badge de "Gratis" */
+.cta-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 0.3rem;
+  letter-spacing: 0.5px;
+  transform: translateY(-1px);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cta-button:hover {
@@ -279,8 +320,18 @@
   opacity: 1;
 }
 
+.cta-button:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .cta-button:hover .cta-icon {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.1);
+}
+
+.cta-button:hover .cta-badge {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px) scale(1.05);
 }
 
 .cta-button:active {
