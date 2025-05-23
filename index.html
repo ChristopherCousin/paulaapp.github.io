@@ -102,224 +102,57 @@
     </header>
 
     <main>
-        <!-- Hero Section Mejorado -->
-        <section class="hero-improved">
-            <!-- Hero Background Effects -->
-            <div class="hero-bg-effects">
-                <div class="floating-elements">
-                    <div class="float-element brain-icon">🧠</div>
-                    <div class="float-element heart-icon">💙</div>
-                    <div class="float-element spark-icon">✨</div>
-                    <div class="float-element peace-icon">🕊️</div>
+        <!-- Hero Section con Simulación de Caso Clínico -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Tu psicóloga personal con <span class="gradient-text">inteligencia artificial</span></h1>
+                    <p class="hero-description">Paula te escucha, te entiende y te acompaña en tu viaje de bienestar emocional. Disponible 24/7, personalizada para ti.</p>
+                    <div class="hero-cta">
+                        <a href="#download" class="primary-button">
+                            <span class="button-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </span>
+                            Comienza tu bienestar
+                        </a>
+                        <div class="hero-badge">¡Totalmente gratis!</div>
+                    </div>
                 </div>
-                <div class="neural-connections">
-                    <svg class="neural-svg" viewBox="0 0 800 600">
-                        <defs>
-                            <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#7F5AF0" stop-opacity="0.3"/>
-                                <stop offset="100%" stop-color="#2CB67D" stop-opacity="0.3"/>
-                            </linearGradient>
-                        </defs>
-                        <path class="neural-path" d="M50,100 Q200,50 350,100 Q500,150 750,100" 
-                              stroke="url(#neuralGradient)" stroke-width="2" fill="none"/>
-                        <path class="neural-path" d="M50,200 Q300,150 550,200 Q650,250 750,200" 
-                              stroke="url(#neuralGradient)" stroke-width="2" fill="none"/>
-                        <circle class="neural-node" cx="50" cy="100" r="4" fill="#7F5AF0"/>
-                        <circle class="neural-node" cx="350" cy="100" r="4" fill="#2CB67D"/>
-                        <circle class="neural-node" cx="750" cy="100" r="4" fill="#7F5AF0"/>
-                        <circle class="neural-node" cx="50" cy="200" r="4" fill="#2CB67D"/>
-                        <circle class="neural-node" cx="550" cy="200" r="4" fill="#7F5AF0"/>
-                        <circle class="neural-node" cx="750" cy="200" r="4" fill="#2CB67D"/>
-                    </svg>
+                
+                <div class="app-showcase">
+                    <div class="phone-frame">
+                        <video id="paulaVideo" class="app-demo-video" autoplay muted loop playsinline preload="auto">
+                            <source src="paula.webm" type="video/webm">
+                            Tu navegador no soporta videos HTML5.
+                        </video>
+                        <div class="video-glow"></div>
+                    </div>
+                    
+                    <div class="case-study-floating">
+                        <div class="case-badge">Caso de estudio</div>
+                        <h3>Manejo de ansiedad social</h3>
+                        <p>Basado en un caso real de terapia cognitivo-conductual para el tratamiento de la ansiedad social, publicado en el Journal of Clinical Psychology (2019).</p>
+                        <div class="case-metrics">
+                            <div class="metric">
+                                <span class="metric-value">87%</span>
+                                <span class="metric-label">Reducción de síntomas</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">6</span>
+                                <span class="metric-label">Semanas de terapia</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="container hero-improved-container">
-                <!-- Trust Bar Superior -->
-                <div class="trust-bar">
-                    <div class="trust-item">
-                        <span class="trust-icon">🔒</span>
-                        <span class="trust-text">100% Privado</span>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">🤖</span>
-                        <span class="trust-text">IA Avanzada</span>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">⏰</span>
-                        <span class="trust-text">24/7 Disponible</span>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">🆓</span>
-                        <span class="trust-text">Gratis</span>
-                    </div>
+            
+            <!-- Indicador de Scroll Down -->
+            <div class="scroll-indicator-container" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
+                <div class="scroll-indicator">
+                    <span class="scroll-line"></span>
+                    <span class="scroll-arrow"></span>
                 </div>
-
-                <div class="hero-improved-content">
-                    <!-- Main Content -->
-                    <div class="hero-main-content">
-                        <!-- Headline Mejorado -->
-                        <div class="hero-headline-section">
-                            <div class="hero-badge-new">
-                                <span class="badge-icon">🚀</span>
-                                <span class="badge-text">Tu bienestar emocional, ahora con IA</span>
-                            </div>
-                            
-                            <h1 class="hero-title-improved">
-                                <span class="title-line-1">Paula te entiende</span>
-                                <span class="title-line-2">
-                                    cuando más lo 
-                                    <span class="gradient-text-animated">necesitas</span>
-                                </span>
-                            </h1>
-                            
-                            <p class="hero-subtitle-improved">
-                                Tu psicóloga personal con inteligencia artificial. Siempre disponible, 
-                                completamente privada, diseñada para tu bienestar emocional.
-                            </p>
-                        </div>
-
-                        <!-- Stats Rápidas -->
-                        <div class="hero-quick-stats">
-                            <div class="quick-stat">
-                                <span class="stat-number">10k+</span>
-                                <span class="stat-label">Usuarios activos</span>
-                            </div>
-                            <div class="quick-stat">
-                                <span class="stat-number">4.9⭐</span>
-                                <span class="stat-label">Rating promedio</span>
-                            </div>
-                            <div class="quick-stat">
-                                <span class="stat-number">24/7</span>
-                                <span class="stat-label">Siempre disponible</span>
-                            </div>
-                        </div>
-
-                        <!-- CTA Section Mejorada -->
-                        <div class="hero-cta-improved">
-                            <div class="cta-primary-section">
-                                <a href="#download" class="cta-main-button">
-                                    <span class="cta-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                            <polyline points="7,10 12,15 17,10"/>
-                                            <line x1="12" y1="15" x2="12" y2="3"/>
-                                        </svg>
-                                    </span>
-                                    <span class="cta-text">Comenzar gratis</span>
-                                    <span class="cta-subtext">Sin registro inicial</span>
-                                </a>
-                                
-                                <div class="cta-security-note">
-                                    <span class="security-icon">🛡️</span>
-                                    <span>Tus datos están seguros</span>
-                                </div>
-                            </div>
-
-                            <div class="cta-secondary-section">
-                                <button class="demo-button" onclick="playDemoConversation()">
-                                    <span class="demo-icon">▶️</span>
-                                    <span>Ver demo de 2 min</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Visual Demo Section -->
-                    <div class="hero-visual-demo">
-                        <!-- Phone Mockup Mejorado -->
-                        <div class="phone-showcase">
-                            <div class="phone-container">
-                                <div class="phone-frame-improved">
-                                    <div class="phone-screen">
-                                        <!-- Conversation Demo -->
-                                        <div class="conversation-preview" id="conversationDemo">
-                                            <div class="conversation-header">
-                                                <div class="paula-avatar">
-                                                    <span>P</span>
-                                                    <div class="avatar-status"></div>
-                                                </div>
-                                                <div class="conversation-info">
-                                                    <h4>Paula</h4>
-                                                    <span class="status-text">En línea</span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="conversation-messages" id="demoMessages">
-                                                <!-- Los mensajes se cargarán dinámicamente -->
-                                            </div>
-                                            
-                                            <div class="conversation-input">
-                                                <div class="input-placeholder">Escribe tu mensaje...</div>
-                                                <div class="input-actions">
-                                                    <span class="voice-icon">🎤</span>
-                                                    <span class="send-icon">📤</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Efectos del teléfono -->
-                                    <div class="phone-glow"></div>
-                                    <div class="phone-reflection"></div>
-                                </div>
-                                
-                                <!-- Elementos flotantes alrededor del teléfono -->
-                                <div class="phone-floating-elements">
-                                    <div class="floating-badge badge-1">
-                                        <span class="badge-emoji">🧘</span>
-                                        <span class="badge-label">Mindfulness</span>
-                                    </div>
-                                    <div class="floating-badge badge-2">
-                                        <span class="badge-emoji">💬</span>
-                                        <span class="badge-label">Chat 24/7</span>
-                                    </div>
-                                    <div class="floating-badge badge-3">
-                                        <span class="badge-emoji">📊</span>
-                                        <span class="badge-label">Progreso</span>
-                                    </div>
-                                    <div class="floating-badge badge-4">
-                                        <span class="badge-emoji">🔐</span>
-                                        <span class="badge-label">Privado</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Success Stories Preview -->
-                        <div class="success-preview">
-                            <div class="success-card">
-                                <div class="success-header">
-                                    <span class="success-icon">✨</span>
-                                    <span class="success-title">Historia real</span>
-                                </div>
-                                <blockquote class="success-quote">
-                                    "Paula me ayudó a gestionar mi ansiedad en solo 2 semanas. 
-                                    Ahora me siento más tranquila y segura."
-                                </blockquote>
-                                <div class="success-author">
-                                    <div class="author-avatar">M</div>
-                                    <div class="author-info">
-                                        <span class="author-name">María, 28</span>
-                                        <span class="author-location">Madrid</span>
-                                    </div>
-                                    <div class="success-rating">⭐⭐⭐⭐⭐</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Scroll Indicator Mejorado -->
-                <div class="scroll-indicator-improved" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
-                    <div class="scroll-text">Descubre más</div>
-                    <div class="scroll-arrow-animated">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 13l3 3 7-7"/>
-                            <path d="M7 6l3 3 7-7"/>
-                        </svg>
-                    </div>
-                </div>
+                <span class="scroll-text">Explora</span>
             </div>
         </section>
 
