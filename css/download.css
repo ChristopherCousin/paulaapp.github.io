@@ -21,14 +21,15 @@
 /* Mockup del teléfono con la app */
 .download-mockup-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
   width: 100%;
+  padding-right: 5rem;
 }
 
-.download-phone {
+#download .download-phone {
   position: relative;
-  width: 280px;
+  width: 200px !important;
   max-width: 100%;
   margin: 0 auto;
   transform-style: preserve-3d;
