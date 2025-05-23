@@ -2133,4 +2133,197 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // === DEMO DE CONVERSACIÓN MEJORADO ===
+  let conversationMessages = [
+      {
+          type: 'user',
+          text: 'Hola Paula, me siento muy ansioso últimamente...',
+          delay: 1000
+      },
+      {
+          type: 'paula',
+          text: 'Hola 😊 Entiendo que te sientes ansioso. Eso debe ser difícil para ti. ¿Podrías contarme qué situaciones específicas te generan más ansiedad?',
+          delay: 2000
+      },
+      {
+          type: 'user',
+          text: 'Principalmente cuando tengo que hablar en público o reuniones de trabajo',
+          delay: 1500
+      },
+      {
+          type: 'paula',
+          text: 'La ansiedad social es muy común y comprensible. Vamos a trabajar en algunas técnicas de respiración que pueden ayudarte en esos momentos. ¿Te parece si empezamos con un ejercicio simple? 🌟',
+          delay: 2500
+      },
+      {
+          type: 'user',
+          text: 'Sí, me gustaría intentarlo',
+          delay: 1000
+      },
+      {
+          type: 'paula',
+          text: 'Perfecto! Hagamos la técnica 4-7-8: Inhala por 4 segundos, mantén por 7, exhala por 8. Te voy a guiar... 🧘‍♀️',
+          delay: 2000
+      }
+  ];
+
+  let currentMessageIndex = 0;
+  let demoInterval;
+
+  function startConversationDemo() {
+      const messagesContainer = document.getElementById('demoMessages');
+      if (!messagesContainer) return;
+      
+      messagesContainer.innerHTML = '';
+      currentMessageIndex = 0;
+      
+      if (demoInterval) {
+          clearInterval(demoInterval);
+      }
+      
+      showNextMessage();
+  }
+
+  function showNextMessage() {
+      if (currentMessageIndex >= conversationMessages.length) {
+          // Reiniciar después de mostrar todos los mensajes
+          setTimeout(() => {
+              startConversationDemo();
+          }, 3000);
+          return;
+      }
+      
+      const message = conversationMessages[currentMessageIndex];
+      const messagesContainer = document.getElementById('demoMessages');
+      
+      setTimeout(() => {
+          // Crear elemento de mensaje
+          const messageElement = document.createElement('div');
+          messageElement.className = `demo-message ${message.type}-message`;
+          
+          if (message.type === 'paula') {
+              messageElement.innerHTML = `
+                  <div class="message-avatar">
+                      <span>P</span>
+                  </div>
+                  <div class="message-content">
+                      <div class="message-bubble">
+                          ${message.text}
+                      </div>
+                  </div>
+              `;
+          } else {
+              messageElement.innerHTML = `
+                  <div class="message-content">
+                      <div class="message-bubble">
+                          ${message.text}
+                      </div>
+                  </div>
+                  <div class="message-avatar user-avatar">
+                      <span>Tú</span>
+                  </div>
+              `;
+          }
+          
+          // Agregar animación de entrada
+          messageElement.style.opacity = '0';
+          messageElement.style.transform = 'translateY(20px)';
+          messagesContainer.appendChild(messageElement);
+          
+          // Animación de entrada
+          setTimeout(() => {
+              messageElement.style.transition = 'all 0.5s ease';
+              messageElement.style.opacity = '1';
+              messageElement.style.transform = 'translateY(0)';
+          }, 100);
+          
+          // Scroll automático
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          
+          currentMessageIndex++;
+          showNextMessage();
+      }, message.delay);
+  }
+
+  function playDemoConversation() {
+      startConversationDemo();
+  }
+
+  // === INICIALIZACIÓN DEL HERO MEJORADO ===
+  function initHeroImproved() {
+      // Iniciar demo de conversación
+      setTimeout(startConversationDemo, 2000);
+      
+      // Animaciones de elementos flotantes
+      const floatingElements = document.querySelectorAll('.float-element');
+      floatingElements.forEach((element, index) => {
+          element.style.animationDelay = `${index * 2}s`;
+      });
+      
+      // Efectos de hover en stats
+      const quickStats = document.querySelectorAll('.quick-stat');
+      quickStats.forEach(stat => {
+          stat.addEventListener('mouseenter', function() {
+              this.style.transform = 'translateY(-5px) scale(1.05)';
+          });
+          
+          stat.addEventListener('mouseleave', function() {
+              this.style.transform = 'translateY(0) scale(1)';
+          });
+      });
+      
+      // Efecto parallax suave en elementos flotantes
+      window.addEventListener('scroll', () => {
+          const scrolled = window.pageYOffset;
+          const rate = scrolled * -0.5;
+          
+          floatingElements.forEach((element, index) => {
+              const speed = 0.2 + (index * 0.1);
+              element.style.transform = `translateY(${rate * speed}px)`;
+          });
+      });
+      
+      // Animación de los badges flotantes
+      const floatingBadges = document.querySelectorAll('.floating-badge');
+      floatingBadges.forEach((badge, index) => {
+          badge.style.animationDelay = `${index}s`;
+      });
+  }
+
+  // Función para manejar intersección (cuando el elemento es visible)
+  function handleIntersection(entries) {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              const element = entry.target;
+              
+              if (element.classList.contains('hero-improved')) {
+                  initHeroImproved();
+              }
+          }
+      });
+  }
+
+  // Configurar observer para efectos cuando entran en vista
+  const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+  // ... existing code ...
+
+  // Actualizar la función de inicialización principal
+  document.addEventListener('DOMContentLoaded', function() {
+      // ... existing code ...
+      
+      // Observer para el hero mejorado
+      const heroImproved = document.querySelector('.hero-improved');
+      if (heroImproved) {
+          observer.observe(heroImproved);
+      }
+      
+      // ... existing code ...
+  });
 });
